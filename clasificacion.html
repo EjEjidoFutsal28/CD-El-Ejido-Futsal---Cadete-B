@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Clasificación · C.D. El Ejido Futsal</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+
+<body>
+
+<!-- ================= NAVEGACIÓN ================= -->
+<nav>
+  <a href="index.html">🏠 Plantilla</a>
+  <a href="clasificacion.html" class="activo">📊 Clasificación</a>
+</nav>
+
+<!-- ================= TÍTULO ================= -->
+<div class="titulo-seccion">
+  <div class="titulo-top">
+    CD EL EJIDO FUTSAL · CADETE "B" · TEMPORADA 25/26
+  </div>
+  <div class="titulo-principal">
+    CLASIFICACIÓN
+  </div>
+</div>
+
+<!-- ================= SELECTOR ================= -->
+<div class="card fade jornada-card">
+
+  <div class="jornada-ui">
+
+    <button class="flecha" id="prevJornada" aria-label="Jornada anterior">‹</button>
+
+    <div class="jornada-pill">
+      <span class="jornada-label">JORNADA</span>
+      <span id="jornadaActual" class="jornada-num">10</span>
+    </div>
+
+    <button class="flecha" id="nextJornada" aria-label="Jornada siguiente">›</button>
+
+  </div>
+
+  <select id="filtro" class="jornada-select"></select>
+
+</div>
+
+
+
+<!-- ================= CLASIFICACIÓN ================= -->
+<div class="card fade">
+  <h2>📊 Clasificación</h2>
+  <table class="clasificacion">
+    <thead>
+      <tr>
+        <th>Pos</th>
+        <th>Equipo</th>
+        <th>Pts</th>
+        <th>PJ</th>
+        <th>PG</th>
+        <th>PE</th>
+        <th>PP</th>
+        <th>GF</th>
+        <th>GC</th>
+        <th>DG</th>
+      </tr>
+    </thead>
+    <tbody id="tabla"></tbody>
+  </table>
+</div>
+
+<!-- ================= PARTIDOS ================= -->
+<div class="card fade">
+  <h2>🗓️ Partidos de la jornada</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Local</th>
+        <th>Resultado</th>
+        <th>Visitante</th>
+      </tr>
+    </thead>
+    <tbody id="partidos"></tbody>
+  </table>
+  <div id="descanso"></div>
+</div>
+
+<!-- ================= VÍDEOS ================= -->
+<div class="card fade">
+  <h2>🎥 Vídeos de la jornada</h2>
+  <div id="videos" class="videos"></div>
+</div>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <h3>© C.D. El Ejido Futsal</h3>
+  <h3>Hecho por Daniel Carralero Romera</h3>
+</footer>
+
+<script>
+/* ===================== EQUIPOS ===================== */
+const nombres = {
+  EJI:"C.D. EL EJIDO FUTSAL",
+  VIC:"C.D. VÍCAR VISTASOL F.S.",
+  POLI:"C.D. POLI EJIDO C.F. B",
+  DAL:"DALÍAS C.F.",
+  SLU:"C.D. SAN LUIS AT.",
+  SPO:"SPORTING ALMERÍA B",
+  ADR:"C.D. ADRA TRAFALGAR"
+};
+
+const escudos = {
+  EJI:"escudos/ejido.png",
+  VIC:"escudos/vicar.png",
+  POLI:"escudos/poli.png",
+  DAL:"escudos/dalias.png",
+  SLU:"escudos/sanluis.png",
+  SPO:"escudos/sporting.png",
+  ADR:"escudos/adra.png"
+};
+
+/* ===================== JORNADAS ===================== */
+const jornadas = {
+  1:[["EJI","SLU",2,1],["DAL","VIC",2,6],["SPO","ADR",5,3],"POLI"],
+  2:[["POLI","EJI",6,1],["VIC","SPO",6,0],["SLU","DAL",4,4],"ADR"],
+  3:[["DAL","POLI",4,4],["SPO","SLU",5,4],["ADR","VIC",1,11],"EJI"],
+  4:[["EJI","DAL",4,2],["SPO","POLI",5,7],["SLU","ADR",2,2],"VIC"],
+  5:[["SPO","EJI",2,6],["VIC","SLU",20,1],["ADR","POLI",2,4],"DAL"],
+  6:[["EJI","ADR",0,0],["DAL","SPO",3,2],["POLI","VIC",1,6],"SLU"],
+  7:[["VIC","EJI",4,2],["SLU","POLI",8,5],["ADR","DAL",1,3],"SPO"],
+  8:[["SLU","EJI",5,2],["ADR","SPO",3,3],["VIC","DAL",2,2],"POLI"],
+  9:[["EJI","POLI",1,4],["DAL","SLU",6,2],["SPO","VIC","Suspendido"],"ADR"],
+  10:[["VIC","ADR",8,1],["SLU","SPO","Suspendido"],["POLI","DAL","21/12 12:30"],"EJI"],
+  11:[["ADR","SLU","11/01"],["SPO","POLI","11/01"],["DAL","EJI","11/01"],"VIC"],
+  12:[["SLU","VIC","18/01"],["POLI","ADR","18/01"],["EJI","SPO","18/01"],"DAL"],
+  13:[["VIC","POLI","25/01"],["ADR","EJI","25/01"],["SPO","DAL","25/01"],"SLU"],
+  14:[["POLI","SLU","08/02"],["EJI","VIC","08/02"],["DAL","ADR","08/02"],"SPO"]
+};
+
+/* ===================== VÍDEOS ===================== */
+const videosPorJornada = {
+  1:[{id:"ZDjvrf4VVCA",titulo:"Resumen"}],
+  2:[
+    {id:"0NSEhm_w2TM",titulo:"Primera parte"},
+    {id:"NItFhz1g6rc",titulo:"Segunda parte"},
+    {id:"4_yhTUxVB6w",titulo:"Resumen"}
+  ],
+  4:[
+    {id:"UV3MiJbDA2o",titulo:"Primera parte"},
+    {id:"ut04Yxvvszg",titulo:"Segunda parte"},
+    {id:"hUXPuUyUZQU",titulo:"Resumen"}
+  ],
+  5:[
+    {id:"njBDKJeuVCk",titulo:"Primera parte"},
+    {id:"LyEIyiNNPEQ",titulo:"Segunda parte"},
+    {id:"EpdoP3Y5LjM",titulo:"Resumen"}
+  ],
+  6:[
+    {id:"khD4vBpBay0",titulo:"Primera parte"},
+    {id:"ReWH_Oyd7c8",titulo:"Segunda parte"},
+    {id:"FzKHOd3BRhw",titulo:"Resumen"}
+  ],
+  7:[
+    {id:"PMy6Awye8V4",titulo:"Primera parte"},
+    {id:"XHGge2RlZds",titulo:"Segunda parte"},
+    {id:"BH8y4ZPz42w",titulo:"Resumen"}
+  ],
+  8:[
+    {id:"yunMOMfFL1c",titulo:"Primera parte"},
+    {id:"WY3m7nQgJ5g",titulo:"Segunda parte"},
+    {id:"5FRO8CiHvqE",titulo:"Resumen"}
+  ],
+  9:[
+    {id:"kK495iMMj5g",titulo:"Primera parte"},
+    {id:"bqRUfRdMSmI",titulo:"Segunda parte"},
+    {id:"Ktq3arKuhbw",titulo:"Resumen"}
+  ]
+};
+
+/* ===================== ELEMENTOS ===================== */
+const filtro = document.getElementById("filtro");
+const tabla = document.getElementById("tabla");
+const partidos = document.getElementById("partidos");
+const descanso = document.getElementById("descanso");
+const videos = document.getElementById("videos");
+
+/* ===================== SELECTOR ===================== */
+Object.keys(jornadas).forEach(j=>{
+  filtro.innerHTML += `<option value="${j}">Jornada ${j}</option>`;
+});
+filtro.value = 10;
+
+const jornadaActual = document.getElementById("jornadaActual");
+const prevBtn = document.getElementById("prevJornada");
+const nextBtn = document.getElementById("nextJornada");
+
+const jornadasDisponibles = Object.keys(jornadas).map(Number);
+const minJornada = Math.min(...jornadasDisponibles);
+const maxJornada = Math.max(...jornadasDisponibles);
+
+/* Inicial */
+jornadaActual.textContent = filtro.value;
+
+/* Flecha izquierda */
+prevBtn.onclick = () => {
+  let j = +filtro.value;
+  if (j > minJornada) {
+    j--;
+    cambiarJornada(j);
+  }
+};
+
+/* Flecha derecha */
+nextBtn.onclick = () => {
+  let j = +filtro.value;
+  if (j < maxJornada) {
+    j++;
+    cambiarJornada(j);
+  }
+};
+
+function cambiarJornada(j) {
+  filtro.value = j;
+  jornadaActual.textContent = j;
+  pintar(j);
+}
+/* ===================== FUNCIÓN PRINCIPAL ===================== */
+function pintar(j){
+
+
+  const stats = {};
+  Object.keys(nombres).forEach(e=>{
+    stats[e]={PJ:0,PG:0,PE:0,PP:0,GF:0,GC:0,Pts:0};
+  });
+
+  for(let i=1;i<=j;i++){
+    jornadas[i].forEach(p=>{
+      if(typeof p==="string") return;
+      if(typeof p[2]!=="number") return;
+
+      const [l,v,gl,gv]=p;
+      stats[l].PJ++; stats[v].PJ++;
+      stats[l].GF+=gl; stats[l].GC+=gv;
+      stats[v].GF+=gv; stats[v].GC+=gl;
+
+      if(gl>gv){stats[l].PG++;stats[l].Pts+=3;stats[v].PP++;}
+      else if(gl<gv){stats[v].PG++;stats[v].Pts+=3;stats[l].PP++;}
+      else{stats[l].PE++;stats[v].PE++;stats[l].Pts++;stats[v].Pts++;}
+    });
+  }
+
+  tabla.innerHTML="";
+  Object.entries(stats)
+    .sort((a,b)=>{
+      if(b[1].Pts!==a[1].Pts) return b[1].Pts-a[1].Pts;
+      const dgA=a[1].GF-a[1].GC;
+      const dgB=b[1].GF-b[1].GC;
+      if(dgB!==dgA) return dgB-dgA;
+      return b[1].GF-a[1].GF;
+    })
+    .forEach((e,i)=>{
+      const d=e[1];
+      tabla.innerHTML+=`
+        <tr class="${e[0]==='EJI'?'ejido':''}">
+          <td>${i+1}</td>
+          <td>
+            <div class="equipo">
+              <img class="escudo" src="${escudos[e[0]]}">
+              <span class="nombre-equipo">${nombres[e[0]]}</span>
+            </div>
+          </td>
+          <td class="puntos">${d.Pts}</td>
+          <td>${d.PJ}</td>
+          <td>${d.PG}</td>
+          <td>${d.PE}</td>
+          <td>${d.PP}</td>
+          <td>${d.GF}</td>
+          <td>${d.GC}</td>
+          <td>${d.GF-d.GC}</td>
+        </tr>`;
+    });
+
+  partidos.innerHTML="";
+  jornadas[j].forEach(p=>{
+    if(typeof p==="string") return;
+    let resultado="";
+
+    if(p[2]==="Suspendido"){
+      resultado=`
+        <div class="resultado-flex">
+          <img class="escudo mini" src="${escudos[p[0]]}">
+          <span class="suspendido">Suspendido</span>
+          <img class="escudo mini" src="${escudos[p[1]]}">
+        </div>`;
+    }else if(typeof p[2]==="number"){
+      resultado=`
+        <div class="resultado-flex">
+          <img class="escudo mini" src="${escudos[p[0]]}">
+          <span class="marcador">${p[2]} - ${p[3]}</span>
+          <img class="escudo mini" src="${escudos[p[1]]}">
+        </div>`;
+    }else{
+      resultado=`
+        <div class="resultado-flex">
+          <img class="escudo mini" src="${escudos[p[0]]}">
+          <span class="fecha">${p[2]}</span>
+          <img class="escudo mini" src="${escudos[p[1]]}">
+        </div>`;
+    }
+
+    partidos.innerHTML+=`
+      <tr class="${p[0]==='EJI'||p[1]==='EJI'?'ejido':''}">
+        <td class="local">${nombres[p[0]]}</td>
+        <td class="resultado">${resultado}</td>
+        <td class="visitante">${nombres[p[1]]}</td>
+      </tr>`;
+  });
+
+  const d=jornadas[j].find(x=>typeof x==="string");
+  descanso.innerHTML=d?`
+    <div class="descanso equipo">
+      <img src="${escudos[d]}" class="escudo">
+      Descansa: ${nombres[d]}
+    </div>`:"";
+
+  videos.innerHTML="";
+  (videosPorJornada[j]||[]).forEach(v=>{
+    videos.innerHTML+=`
+      <a class="video-card" target="_blank" href="https://youtu.be/${v.id}">
+        <img src="https://img.youtube.com/vi/${v.id}/hqdefault.jpg">
+        <p>${v.titulo}</p>
+      </a>`;
+  });
+}
+
+filtro.onchange = () => {
+  jornadaActual.textContent = filtro.value;
+  pintar(+filtro.value);
+};
+pintar(+filtro.value);
+
+
+</script>
+
+</body>
+</html>
