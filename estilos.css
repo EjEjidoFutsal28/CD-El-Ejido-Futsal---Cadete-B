@@ -173,7 +173,7 @@ tr.ejido{
   font-weight:900;
 }
 
-/* ================= EQUIPO (ESCUDO + TEXTO) ================= */
+/* ================= EQUIPO ================= */
 .equipo{
   display:flex;
   align-items:center;
@@ -360,6 +360,38 @@ tr.ejido{
   color:#0b4fa3;
 }
 
+/* ================= JORNADA PRIME ================= */
+.jornada-ui{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:30px;
+  margin-top:20px;
+}
+
+.jornada-pill{
+  background:linear-gradient(135deg,#ffffff,#f3f7ff);
+  border:3px solid var(--azul);
+  border-radius:22px;
+  padding:14px 36px;
+  min-width:170px;
+}
+
+.jornada-label{
+  display:block;
+  font-size:13px;
+  letter-spacing:2px;
+  font-weight:700;
+  color:#666;
+}
+
+.jornada-num{
+  display:block;
+  font-size:42px;
+  font-weight:900;
+  color:var(--azul);
+}
+
 /* ================= FOOTER ================= */
 footer{
   max-width:1200px;
@@ -388,265 +420,140 @@ footer{
 @media (prefers-reduced-motion: reduce){
   .fade{animation:none;}
 }
-
-/* ================= RESPONSIVE ================= */
-@media(max-width:800px){
-  .titulo-principal{font-size:28px;}
+/* Ocultar selector de jornada antiguo (feo) */
+.jornada-control,
+.jornada-select{
+  display:none !important;
 }
+/* ================= MODO MÓVIL ================= */
+@media (max-width: 768px){
 
-@media(max-width:700px){
-  #plantilla td:nth-child(4),
-  #plantilla td:nth-child(5),
-  #plantilla td:nth-child(8),
-  #plantilla td:nth-child(9){
-    display:none;
-  }
-}
-
-@media(max-width:600px){
-  nav a{
-    display:inline-block;
-    margin:6px 10px;
+  body{
+    padding:6px;
     font-size:15px;
   }
 
-  th,td{
+  /* NAV */
+  nav a{
+    margin:0 10px;
+    font-size:15px;
+  }
+
+  /* TÍTULO */
+  .titulo-principal{
+    font-size:28px;
+    letter-spacing:1px;
+  }
+
+  .titulo-top{
     font-size:13px;
+    padding:10px;
+  }
+
+  /* CARD */
+  .card{
+    padding:20px 14px;
+    border-radius:20px;
+  }
+
+  .card h2{
+    font-size:22px;
+    margin-bottom:18px;
+  }
+
+  /* ===== TABLAS ===== */
+  table{
+    font-size:14px;
+  }
+
+  th{
+    font-size:12px;
     padding:8px 4px;
   }
 
-  .resultado-flex{
-    gap:14px;
+  td{
+    padding:10px 6px;
   }
-}
-/* ================= JORNADA PRIME ================= */
 
-.jornada-card{
-  text-align:center;
-}
+  /* ===== PLANTILLA: OCULTAR COLUMNAS ===== */
+  #plantilla th:nth-child(4),  /* Edad */
+  #plantilla td:nth-child(4),
+  #plantilla th:nth-child(5),  /* Fecha nac */
+  #plantilla td:nth-child(5),
+  #plantilla th:nth-child(7),  /* Tit */
+  #plantilla td:nth-child(7),
+  #plantilla th:nth-child(8),  /* Sup */
+  #plantilla td:nth-child(8),
+  #plantilla th:nth-child(9),  /* NOC */
+  #plantilla td:nth-child(9){
+    display:none;
+  }
 
-.jornada-ui{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:30px;
-  margin-top:20px;
-}
+  /* ===== CLASIFICACIÓN: SIMPLIFICAR ===== */
+  .clasificacion th:nth-child(4),
+  .clasificacion td:nth-child(4),
+  .clasificacion th:nth-child(6),
+  .clasificacion td:nth-child(6),
+  .clasificacion th:nth-child(7),
+  .clasificacion td:nth-child(7){
+    display:none;
+  }
 
-/* Botones */
-.flecha{
-  width:48px;
-  height:48px;
-  border-radius:50%;
-  border:none;
-  font-size:28px;
-  font-weight:700;
-  background:linear-gradient(135deg,#0b4fa3,#0e5aa7);
-  color:white;
-  cursor:pointer;
-  box-shadow:0 8px 20px rgba(0,0,0,.25);
-  transition:.25s ease;
-}
+  /* ===== EQUIPO ===== */
+  .equipo{
+    gap:8px;
+  }
 
-.flecha:hover{
-  transform:translateY(-3px);
-  box-shadow:0 12px 30px rgba(0,0,0,.35);
-}
+  .equipo .escudo{
+    width:22px;
+    height:22px;
+  }
 
-.flecha:active{
-  transform:scale(.92);
-}
+  .nombre-equipo{
+    font-size:13px;
+  }
 
-/* Pill central */
-.jornada-pill{
-  background:linear-gradient(135deg,#ffffff,#f3f7ff);
-  border:3px solid var(--azul);
-  border-radius:22px;
-  padding:14px 36px;
-  min-width:170px;
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.8),
-    0 12px 30px rgba(0,0,0,.25);
-}
-
-.jornada-label{
-  display:block;
-  font-size:13px;
-  letter-spacing:2px;
-  font-weight:700;
-  color:#666;
-}
-
-.jornada-num{
-  display:block;
-  font-size:42px;
-  font-weight:900;
-  color:var(--azul);
-  line-height:1;
-}
-
-/* Ocultar select */
-.jornada-select{
-  display:none;
-}
-
-/* Responsive */
-@media(max-width:500px){
+  /* ===== JORNADA ===== */
   .jornada-ui{
     gap:18px;
   }
 
+  .flecha{
+    width:50px;
+    height:50px;
+    font-size:26px;
+  }
+
   .jornada-pill{
-    padding:12px 26px;
-    min-width:130px;
+    padding:12px 22px;
+    min-width:140px;
   }
 
   .jornada-num{
     font-size:34px;
   }
-}
-/* ===== TABLA CLASIFICACIÓN - MÓVIL ===== */
-@media (max-width: 650px) {
 
-  /* Reducir tamaño general */
-  table {
-    font-size: 13px;
+  /* ===== RANKINGS ===== */
+  .rankings{
+    grid-template-columns:1fr;
   }
 
-  th, td {
-    padding: 6px 6px;
+  /* ===== PARTIDOS ===== */
+  .resultado-flex{
+    gap:16px;
   }
 
-  /* Ocultar columnas menos importantes */
-  table th:nth-child(5),
-  table th:nth-child(6),
-  table th:nth-child(7),
-  table th:nth-child(8),
-  table th:nth-child(9),
-
-  table td:nth-child(5),
-  table td:nth-child(6),
-  table td:nth-child(7),
-  table td:nth-child(8),
-  table td:nth-child(9) {
-    display: none;
+  .resultado-flex span{
+    min-width:70px;
+    font-size:14px;
   }
 
-  /* Columna equipo más compacta */
-  td .equipo {
-    gap: 8px;
-    padding: 6px 8px;
+  /* ===== VÍDEOS ===== */
+  .videos{
+    grid-template-columns:1fr;
   }
 
-  td .equipo img.escudo {
-    width: 22px;
-    height: 22px;
-  }
-
-  td .equipo .nombre-equipo {
-    font-size: 13px;
-    line-height: 1.1;
-  }
-
-  /* Centrar números */
-  td:not(:nth-child(2)) {
-    text-align: center;
-  }
-
-}
-/* ===== TABLAS - ESTILO MÓVIL GENERAL ===== */
-@media (max-width: 650px) {
-
-  table {
-    width: 100%;
-    font-size: 13px;
-    border-collapse: collapse;
-  }
-
-  th, td {
-    padding: 6px 6px;
-  }
-
-  th {
-    font-size: 12px;
-    font-weight: 600;
-  }
-
-  /* Centrar números */
-  td {
-    text-align: center;
-  }
-
-  /* Columna principal alineada a la izquierda */
-  td:first-child,
-  td:nth-child(2) {
-    text-align: left;
+  .video-card p{
+    font-size:14px;
   }
 }
-@media (max-width: 650px) {
-
-  /* Clasificación */
-  .card h2:has(+ table) ~ table th:nth-child(5),
-  .card h2:has(+ table) ~ table th:nth-child(6),
-  .card h2:has(+ table) ~ table th:nth-child(7),
-  .card h2:has(+ table) ~ table th:nth-child(8),
-  .card h2:has(+ table) ~ table th:nth-child(9),
-
-  .card h2:has(+ table) ~ table td:nth-child(5),
-  .card h2:has(+ table) ~ table td:nth-child(6),
-  .card h2:has(+ table) ~ table td:nth-child(7),
-  .card h2:has(+ table) ~ table td:nth-child(8),
-  .card h2:has(+ table) ~ table td:nth-child(9) {
-    display: none;
-  }
-}
-@media (max-width: 650px) {
-
-  /* Plantilla */
-  .plantilla th:nth-child(4),
-  .plantilla th:nth-child(5),
-
-  .plantilla td:nth-child(4),
-  .plantilla td:nth-child(5) {
-    display: none;
-  }
-
-  .plantilla td {
-    font-size: 13px;
-  }
-}
-@media (max-width: 650px) {
-
-  /* Plantilla */
-  .plantilla th:nth-child(4),
-  .plantilla th:nth-child(5),
-
-  .plantilla td:nth-child(4),
-  .plantilla td:nth-child(5) {
-    display: none;
-  }
-
-  .plantilla td {
-    font-size: 13px;
-  }
-}
-@media (max-width: 650px) {
-
-  .ranking th:nth-child(3),
-  .ranking td:nth-child(3) {
-    display: none;
-  }
-
-  .ranking td:last-child {
-    font-weight: 700;
-    font-size: 14px;
-  }
-}
-@media (max-width: 650px) {
-  table img {
-    width: 22px;
-    height: 22px;
-  }
-}
-
-
