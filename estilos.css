@@ -422,339 +422,217 @@ select{
   to{opacity:1; transform:translateY(0);}
 }
 
-/* ================= MODO MÓVIL LIMPIO Y PRO ================= */
 /* =========================================================
    MODO MÓVIL — LIMPIO, PRO Y ESTABLE
    ========================================================= */
 @media (max-width:768px){
 
-  /* ================= BASE ================= */
-  body{
-    padding:6px;
-    padding-bottom:70px;
-    font-size:15px;
-    background:#0b3c6d;
-  }
-
-  /* ================= NAV FIJO ================= */
-  nav{
-    position:fixed;
-    bottom:0;
-    left:0;
-    right:0;
-    background:linear-gradient(135deg,var(--azul),var(--azul2));
-    padding:10px 0;
-    z-index:999;
-    border-top:2px solid rgba(255,255,255,.2);
-  }
-
-  nav a{
-    font-size:14px;
-  }
-
-  /* ================= TÍTULO ================= */
-  .titulo-principal{
-    font-size:28px;
-    letter-spacing:1px;
-  }
-
-  .titulo-top{
-    font-size:13px;
-    padding:10px;
-  }
-
-  /* ================= CARD ================= */
-  .card{
-    padding:20px 14px;
-    border-radius:20px;
-    margin-top:14px;
-    overflow-x:auto;
-  }
-
-  .card h2{
-    font-size:22px;
-    margin-bottom:18px;
-  }
-
-  /* =========================================================
-     TABLA PLANTILLA (JUGADORES)
-     ========================================================= */
-
-  #plantilla{
-    min-width:720px;
-  }
-
-  /* Jugador */
-  #plantilla th:nth-child(2),
-  #plantilla td:nth-child(2){
-    min-width:240px;
-    font-size:15px;
-    font-weight:700;
-  }
-
-  /* Posición */
-  #plantilla th:nth-child(3),
-  #plantilla td:nth-child(3){
-    min-width:140px;
-    font-size:14px;
-    font-weight:700;
-  }
-
-  /* Ocultar columnas secundarias */
-  #plantilla th:nth-child(4),
-  #plantilla td:nth-child(4),
-  #plantilla th:nth-child(5),
-  #plantilla td:nth-child(5),
-  #plantilla th:nth-child(7),
-  #plantilla td:nth-child(7),
-  #plantilla th:nth-child(8),
-  #plantilla td:nth-child(8),
-  #plantilla th:nth-child(9),
-  #plantilla td:nth-child(9){
-    display:none;
-  }
-
-  /* =========================================================
-     TABLA CLASIFICACIÓN (COMPLETA + SCROLL)
-     ========================================================= */
-
-  .clasificacion{
-    min-width:900px;
-  }
-
-  .clasificacion th,
-  .clasificacion td{
-    font-size:14px;
-    padding:10px 6px;
-  }
-
-  .clasificacion th:nth-child(2),
-  .clasificacion td:nth-child(2){
-    min-width:240px;
-    text-align:left;
-  }
-
-  /* =========================================================
-     PARTIDOS DE LA JORNADA (CARDS CENTRADAS)
-     ========================================================= */
-
-  #partidos thead{
-    display:none;
-  }
-
-  #partidos tbody{
-    display:grid;
-    grid-template-columns:1fr;
-    gap:18px;
-  }
-
-  #partidos tr{
-    display:block;
-    width:100%;
-    background:white;
-    border-radius:22px;
-    padding:18px 16px;
-    border:3px solid var(--azul);
-    box-shadow:0 12px 26px rgba(0,0,0,.2);
-    text-align:center;
-  }
-
-  #partidos td{
-    display:block;
-    border:none;
-    padding:6px 0;
-  }
-
-  #partidos td.local,
-  #partidos td.visitante{
-    font-size:17px;
-    font-weight:800;
-    color:var(--azul);
-  }
-
-  /* 🔥 MARCADOR PROTAGONISTA */
-  #partidos .marcador{
-    display:block;
-    width:100%;
-    max-width:260px;
-    margin:16px auto;
-    background:linear-gradient(135deg,var(--azul),var(--azul2));
-    color:white;
-    padding:14px 0;
-    border-radius:20px;
-    font-size:30px;
-    font-weight:900;
-    letter-spacing:2px;
-    box-shadow:0 8px 20px rgba(0,0,0,.3);
-  }
-
-  #partidos .fecha{
-    display:inline-block;
-    background:#eee;
-    padding:8px 16px;
-    border-radius:14px;
-    font-size:15px;
-  }
-
-  #partidos .suspendido{
-    display:inline-block;
-    background:#ffebee;
-    padding:8px 16px;
-    border-radius:14px;
-    font-size:15px;
-    font-weight:900;
-  }
-
-  /* =========================================================
-     RANKINGS Y VÍDEOS
-     ========================================================= */
-
-  .rankings{
-    grid-template-columns:1fr;
-  }
-
-  .videos{
-    grid-template-columns:1fr;
-  }
-
-  .video-card{
-    border-radius:22px;
-  }
-
-  .video-card img{
-    aspect-ratio:16/9;
-    object-fit:cover;
-  }
-
-  .video-card p{
-    font-size:15px;
-  }
-
+/* ========== BASE ========== */
+body{
+  padding:6px;
+  padding-bottom:70px;
+  font-size:15px;
+  background:#0b3c6d;
 }
+
+/* ========== NAV FIJO ========== */
+nav{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  background:linear-gradient(135deg,var(--azul),var(--azul2));
+  padding:10px 0;
+  z-index:999;
+  border-top:2px solid rgba(255,255,255,.2);
+}
+
+nav a{
+  font-size:14px;
+}
+
+/* ========== TÍTULOS ========== */
+.titulo-principal{
+  font-size:28px;
+  letter-spacing:1px;
+}
+
+.titulo-top{
+  font-size:13px;
+  padding:10px;
+}
+
+/* ========== CARD ========== */
+.card{
+  padding:20px 14px;
+  border-radius:20px;
+  margin-top:14px;
+  overflow-x:auto;
+}
+
+.card h2{
+  font-size:22px;
+  margin-bottom:18px;
+}
+
 /* =========================================================
-   PARTIDOS – CORRECCIÓN DEFINITIVA MÓVIL
+   TABLA PLANTILLA
    ========================================================= */
-@media (max-width:768px){
-
-  /* OCULTAR CABECERA DE TABLA */
-  .card table thead{
-    display:none;
-  }
-
-  /* Convertir tbody en grid */
-  .card table tbody#partidos{
-    display:grid;
-    grid-template-columns:1fr;
-    gap:18px;
-    width:100%;
-  }
-
-  /* Cada partido ocupa TODO el ancho */
-  .card table tbody#partidos tr{
-    display:block;
-    width:100%;
-    background:white;
-    border-radius:22px;
-    padding:18px 16px;
-    border:3px solid var(--azul);
-    box-shadow:0 12px 26px rgba(0,0,0,.25);
-    text-align:center;
-  }
-
-  /* Celdas limpias */
-  .card table tbody#partidos td{
-    display:block;
-    border:none;
-    padding:6px 0;
-  }
-
-  /* Equipos */
-  .card table tbody#partidos td.local,
-  .card table tbody#partidos td.visitante{
-    font-size:17px;
-    font-weight:800;
-    color:var(--azul);
-  }
-
-  /* MARCADOR GRANDE Y CENTRADO */
-  .card table tbody#partidos .marcador{
-    display:block;
-    width:100%;
-    max-width:260px;
-    margin:16px auto;
-    background:linear-gradient(135deg,var(--azul),var(--azul2));
-    color:white;
-    padding:16px 0;
-    border-radius:20px;
-    font-size:30px;
-    font-weight:900;
-    letter-spacing:2px;
-    box-shadow:0 8px 20px rgba(0,0,0,.3);
-  }
-
-  /* Suspendido */
-  .card table tbody#partidos .suspendido{
-    display:inline-block;
-    background:#ff0000;
-    padding:10px 18px;
-    border-radius:14px;
-    font-size:15px;
-    font-weight:900;
-  }@media (max-width:768px){
-
-  /* Suspendido como marcador grande */
-  #partidos .suspendido{
-    display:block;
-    width:100%;
-    max-width:260px;
-    margin:16px auto;
-    background:linear-gradient(135deg,#ff0000,#ff0000);
-    color:white;
-    padding:16px 0;
-    border-radius:20px;
-    font-size:26px;
-    font-weight:900;
-    letter-spacing:1px;
-    box-shadow:0 8px 20px rgba(0,0,0,.3);
-    text-align:center;
-  }
-
+#plantilla{
+  min-width:720px;
 }
 
+#plantilla th:nth-child(2),
+#plantilla td:nth-child(2){
+  min-width:240px;
+  font-weight:700;
 }
-@media (max-width:768px){
 
-  /* Escudos de los equipos */
-  #partidos img{
-    width:44px;
-    height:44px;
-    object-fit:contain;
-    margin:6px auto;
-    display:inline-block;
-  }
-
+#plantilla th:nth-child(3),
+#plantilla td:nth-child(3){
+  min-width:140px;
+  font-weight:700;
 }
-@media (max-width:768px){
 
-  /* Mostrar cabeceras por defecto */
-  table thead{
-    display:table-header-group;
-  }
-
-  /* EXCEPCIÓN: partidos (no las necesita) */
-  #partidos thead{
-    display:none;
-  }
-
+#plantilla th:nth-child(4),
+#plantilla td:nth-child(4),
+#plantilla th:nth-child(5),
+#plantilla td:nth-child(5),
+#plantilla th:nth-child(7),
+#plantilla td:nth-child(7),
+#plantilla th:nth-child(8),
+#plantilla td:nth-child(8),
+#plantilla th:nth-child(9),
+#plantilla td:nth-child(9){
+  display:none;
 }
-@media (max-width:768px){
 
-  .rankings h2,
-  .rankings h3{
-    display:block;
-    font-size:18px;
-    margin-bottom:12px;
-    text-align:center;
-  }
+/* =========================================================
+   TABLA CLASIFICACIÓN (SCROLL)
+   ========================================================= */
+.clasificacion{
+  min-width:900px;
+}
+
+.clasificacion th,
+.clasificacion td{
+  font-size:14px;
+  padding:10px 6px;
+}
+
+.clasificacion th:nth-child(2),
+.clasificacion td:nth-child(2){
+  min-width:240px;
+  text-align:left;
+}
+
+/* =========================================================
+   PARTIDOS — TARJETAS
+   ========================================================= */
+#partidos thead{
+  display:none;
+}
+
+#partidos tbody{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:18px;
+}
+
+#partidos tr{
+  background:white;
+  border-radius:22px;
+  padding:18px 16px;
+  border:3px solid var(--azul);
+  box-shadow:0 12px 26px rgba(0,0,0,.25);
+  text-align:center;
+}
+
+#partidos td{
+  display:block;
+  border:none;
+  padding:6px 0;
+}
+
+#partidos td.local,
+#partidos td.visitante{
+  font-size:17px;
+  font-weight:800;
+  color:var(--azul);
+}
+
+/* Escudos */
+#partidos img{
+  width:48px;
+  height:48px;
+  object-fit:contain;
+  margin:6px auto;
+}
+
+/* Marcador */
+#partidos .marcador{
+  display:block;
+  max-width:260px;
+  margin:16px auto;
+  padding:16px 0;
+  background:linear-gradient(135deg,var(--azul),var(--azul2));
+  color:white;
+  font-size:30px;
+  font-weight:900;
+  border-radius:20px;
+  letter-spacing:2px;
+}
+
+/* Suspendido = igual que marcador */
+#partidos .suspendido{
+  display:block;
+  max-width:260px;
+  margin:16px auto;
+  padding:16px 0;
+  background:linear-gradient(135deg,#c62828,#e53935);
+  color:white;
+  font-size:26px;
+  font-weight:900;
+  border-radius:20px;
+}
+
+/* Fecha */
+#partidos .fecha{
+  display:inline-block;
+  background:#eee;
+  padding:8px 16px;
+  border-radius:14px;
+}
+
+/* =========================================================
+   RANKINGS Y VÍDEOS
+   ========================================================= */
+.rankings{
+  grid-template-columns:1fr;
+}
+
+.rankings h2,
+.rankings h3{
+  font-size:18px;
+  text-align:center;
+  margin-bottom:12px;
+}
+
+.videos{
+  grid-template-columns:1fr;
+}
+
+.video-card{
+  border-radius:22px;
+}
+
+.video-card img{
+  aspect-ratio:16/9;
+  object-fit:cover;
+}
+
+.video-card p{
+  font-size:15px;
+}
 
 }
