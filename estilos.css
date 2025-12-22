@@ -631,3 +631,75 @@ select{
   }
 
 }
+/* =========================================================
+   PARTIDOS – CORRECCIÓN DEFINITIVA MÓVIL
+   ========================================================= */
+@media (max-width:768px){
+
+  /* OCULTAR CABECERA DE TABLA */
+  .card table thead{
+    display:none;
+  }
+
+  /* Convertir tbody en grid */
+  .card table tbody#partidos{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:18px;
+    width:100%;
+  }
+
+  /* Cada partido ocupa TODO el ancho */
+  .card table tbody#partidos tr{
+    display:block;
+    width:100%;
+    background:white;
+    border-radius:22px;
+    padding:18px 16px;
+    border:3px solid var(--azul);
+    box-shadow:0 12px 26px rgba(0,0,0,.25);
+    text-align:center;
+  }
+
+  /* Celdas limpias */
+  .card table tbody#partidos td{
+    display:block;
+    border:none;
+    padding:6px 0;
+  }
+
+  /* Equipos */
+  .card table tbody#partidos td.local,
+  .card table tbody#partidos td.visitante{
+    font-size:17px;
+    font-weight:800;
+    color:var(--azul);
+  }
+
+  /* MARCADOR GRANDE Y CENTRADO */
+  .card table tbody#partidos .marcador{
+    display:block;
+    width:100%;
+    max-width:260px;
+    margin:16px auto;
+    background:linear-gradient(135deg,var(--azul),var(--azul2));
+    color:white;
+    padding:16px 0;
+    border-radius:20px;
+    font-size:30px;
+    font-weight:900;
+    letter-spacing:2px;
+    box-shadow:0 8px 20px rgba(0,0,0,.3);
+  }
+
+  /* Suspendido */
+  .card table tbody#partidos .suspendido{
+    display:inline-block;
+    background:#ffebee;
+    padding:10px 18px;
+    border-radius:14px;
+    font-size:15px;
+    font-weight:900;
+  }
+
+}
