@@ -423,15 +423,20 @@ select{
 }
 
 /* ================= MODO MÓVIL LIMPIO Y PRO ================= */
+/* =========================================================
+   MODO MÓVIL — LIMPIO, PRO Y ESTABLE
+   ========================================================= */
 @media (max-width:768px){
 
-  /* ===== BASE ===== */
+  /* ================= BASE ================= */
   body{
     padding:6px;
+    padding-bottom:70px;
     font-size:15px;
     background:#0b3c6d;
   }
 
+  /* ================= NAV FIJO ================= */
   nav{
     position:fixed;
     bottom:0;
@@ -447,11 +452,7 @@ select{
     font-size:14px;
   }
 
-  body{
-    padding-bottom:70px;
-  }
-
-  /* ===== TÍTULO ===== */
+  /* ================= TÍTULO ================= */
   .titulo-principal{
     font-size:28px;
     letter-spacing:1px;
@@ -462,12 +463,12 @@ select{
     padding:10px;
   }
 
-  /* ===== CARD ===== */
+  /* ================= CARD ================= */
   .card{
     padding:20px 14px;
     border-radius:20px;
     margin-top:14px;
-    overflow-x:auto; /* clave para tablas */
+    overflow-x:auto;
   }
 
   .card h2{
@@ -480,13 +481,13 @@ select{
      ========================================================= */
 
   #plantilla{
-    min-width:700px; /* permite respirar */
+    min-width:720px;
   }
 
   /* Jugador */
   #plantilla th:nth-child(2),
   #plantilla td:nth-child(2){
-    min-width:220px;
+    min-width:240px;
     font-size:15px;
     font-weight:700;
   }
@@ -494,12 +495,12 @@ select{
   /* Posición */
   #plantilla th:nth-child(3),
   #plantilla td:nth-child(3){
-    min-width:120px;
+    min-width:140px;
     font-size:14px;
     font-weight:700;
   }
 
-  /* Ocultar columnas menos importantes */
+  /* Ocultar columnas secundarias */
   #plantilla th:nth-child(4),
   #plantilla td:nth-child(4),
   #plantilla th:nth-child(5),
@@ -518,7 +519,7 @@ select{
      ========================================================= */
 
   .clasificacion{
-    min-width:850px; /* TODA la info visible */
+    min-width:900px;
   }
 
   .clasificacion th,
@@ -529,17 +530,13 @@ select{
 
   .clasificacion th:nth-child(2),
   .clasificacion td:nth-child(2){
-    min-width:220px; /* nombre equipo */
+    min-width:240px;
     text-align:left;
   }
 
   /* =========================================================
-     PARTIDOS (CARDS CENTRADAS)
+     PARTIDOS DE LA JORNADA (CARDS CENTRADAS)
      ========================================================= */
-
-  #partidos table{
-    width:100%;
-  }
 
   #partidos thead{
     display:none;
@@ -548,56 +545,63 @@ select{
   #partidos tbody{
     display:grid;
     grid-template-columns:1fr;
-    gap:16px;
+    gap:18px;
   }
 
   #partidos tr{
     display:block;
     width:100%;
-    margin:0 auto;
     background:white;
-    border-radius:20px;
-    padding:16px;
+    border-radius:22px;
+    padding:18px 16px;
     border:3px solid var(--azul);
-    box-shadow:0 10px 22px rgba(0,0,0,.18);
+    box-shadow:0 12px 26px rgba(0,0,0,.2);
+    text-align:center;
   }
 
   #partidos td{
     display:block;
-    text-align:center;
     border:none;
     padding:6px 0;
-    font-size:14px;
   }
 
-  #partidos .local,
-  #partidos .visitante{
-    font-weight:700;
+  #partidos td.local,
+  #partidos td.visitante{
+    font-size:17px;
+    font-weight:800;
     color:var(--azul);
   }
 
+  /* 🔥 MARCADOR PROTAGONISTA */
   #partidos .marcador{
-    display:inline-block;
-    background:var(--azul);
+    display:block;
+    width:100%;
+    max-width:260px;
+    margin:16px auto;
+    background:linear-gradient(135deg,var(--azul),var(--azul2));
     color:white;
-    padding:8px 20px;
-    border-radius:14px;
-    font-size:18px;
+    padding:14px 0;
+    border-radius:20px;
+    font-size:30px;
     font-weight:900;
-    margin:10px 0;
+    letter-spacing:2px;
+    box-shadow:0 8px 20px rgba(0,0,0,.3);
   }
 
   #partidos .fecha{
+    display:inline-block;
     background:#eee;
-    padding:6px 14px;
-    border-radius:12px;
-    font-style:normal;
+    padding:8px 16px;
+    border-radius:14px;
+    font-size:15px;
   }
 
   #partidos .suspendido{
+    display:inline-block;
     background:#ffebee;
-    padding:6px 14px;
-    border-radius:12px;
+    padding:8px 16px;
+    border-radius:14px;
+    font-size:15px;
     font-weight:900;
   }
 
@@ -624,61 +628,6 @@ select{
 
   .video-card p{
     font-size:15px;
-  }
-}
-/* ===== RESULTADOS GRANDES (MÓVIL) ===== */
-@media (max-width:768px){
-
-  #partidos .marcador{
-    display:block;
-    width:100%;
-    max-width:220px;
-    margin:14px auto;
-    background:linear-gradient(135deg,var(--azul),var(--azul2));
-    color:white;
-    padding:12px 0;
-    border-radius:16px;
-    font-size:26px;      /* 👈 MÁS GRANDE */
-    font-weight:900;
-    letter-spacing:2px;
-  }
-
-  #partidos .local,
-  #partidos .visitante{
-    font-size:16px;
-  }
-
-}
-/* ================= RESULTADOS GRANDES EN MÓVIL ================= */
-@media (max-width:768px){
-
-  /* Contenedor del partido */
-  #partidos tr{
-    text-align:center;
-  }
-
-  /* Marcador grande y protagonista */
-  #partidos td .marcador{
-    display:block;
-    width:100%;
-    max-width:240px;
-    margin:16px auto;
-    background:linear-gradient(135deg,var(--azul),var(--azul2));
-    color:white;
-    padding:14px 0;
-    border-radius:18px;
-    font-size:28px;        /* 👈 MUY GRANDE */
-    font-weight:900;
-    letter-spacing:2px;
-    box-shadow:0 6px 16px rgba(0,0,0,.25);
-  }
-
-  /* Nombres de equipos */
-  #partidos td.local,
-  #partidos td.visitante{
-    font-size:17px;
-    font-weight:800;
-    margin-top:4px;
   }
 
 }
