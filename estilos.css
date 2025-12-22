@@ -695,7 +695,7 @@ select{
   /* Suspendido */
   .card table tbody#partidos .suspendido{
     display:inline-block;
-    background:#ffebee;
+    background:#ff0000;
     padding:10px 18px;
     border-radius:14px;
     font-size:15px;
@@ -731,6 +731,30 @@ select{
     object-fit:contain;
     margin:6px auto;
     display:inline-block;
+  }
+
+}
+@media (max-width:768px){
+
+  /* Mostrar cabeceras por defecto */
+  table thead{
+    display:table-header-group;
+  }
+
+  /* EXCEPCIÓN: partidos (no las necesita) */
+  #partidos thead{
+    display:none;
+  }
+
+}
+@media (max-width:768px){
+
+  .rankings h2,
+  .rankings h3{
+    display:block;
+    font-size:18px;
+    margin-bottom:12px;
+    text-align:center;
   }
 
 }
