@@ -557,3 +557,180 @@ footer{
     font-size:14px;
   }
 }
+@media (max-width:768px){
+
+  table{
+    display:block;
+  }
+
+  table thead{
+    display:none;
+  }
+
+  table tbody{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:14px;
+  }
+
+  table tr{
+    display:grid;
+    grid-template-columns:1fr;
+    background:white;
+    border-radius:18px;
+    padding:14px;
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
+  }
+
+  table td{
+    border:none;
+    padding:6px 0;
+  }
+
+}
+@media (max-width:768px){
+
+  .resultado-flex{
+    gap:12px;
+  }
+
+  .resultado-flex .marcador{
+    background:var(--azul);
+    color:white;
+    padding:6px 14px;
+    border-radius:12px;
+    font-size:18px;
+  }
+
+  .resultado-flex .fecha{
+    background:#eee;
+    padding:6px 12px;
+    border-radius:10px;
+  }
+
+}
+@media (max-width:768px){
+
+  nav{
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:linear-gradient(135deg,var(--azul),var(--azul2));
+    padding:12px 0;
+    border-radius:0 0 18px 18px;
+    box-shadow:0 8px 20px rgba(0,0,0,.35);
+  }
+
+}
+@media (max-width:768px){
+
+  .video-card{
+    border-radius:22px;
+  }
+
+  .video-card img{
+    aspect-ratio:16/9;
+    object-fit:cover;
+  }
+
+  .video-card p{
+    font-size:16px;
+  }
+
+}
+@media (hover:hover){
+
+  .video-card:hover,
+  table tr:hover{
+    transform:translateY(-4px);
+  }
+
+}
+@media (max-width:768px){
+
+  body{
+    background:#0b3c6d;
+  }
+
+  .card{
+    margin-top:14px;
+  }
+
+}
+/* ================= PARTIDOS COMO CARDS EN MÓVIL ================= */
+@media (max-width:768px){
+
+  /* Ocultar cabecera de tabla */
+  .card table thead{
+    display:none;
+  }
+
+  /* Tabla como grid */
+  .card table tbody{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:16px;
+  }
+
+  /* Cada fila = tarjeta */
+  .card table tr{
+    display:block;
+    background:white;
+    border-radius:20px;
+    padding:14px 16px;
+    box-shadow:0 10px 25px rgba(0,0,0,.18);
+  }
+
+  /* Celdas limpias */
+  .card table td{
+    border:none;
+    padding:6px 0;
+    font-size:14px;
+  }
+
+  /* Equipos */
+  .local,
+  .visitante{
+    font-weight:700;
+    text-align:center;
+  }
+
+  /* Resultado centrado */
+  .resultado{
+    text-align:center;
+    margin:10px 0;
+  }
+
+  /* Marcador tipo badge */
+  .marcador{
+    background:var(--azul);
+    color:white;
+    padding:8px 18px;
+    border-radius:14px;
+    font-size:18px;
+    font-weight:900;
+    letter-spacing:1px;
+  }
+
+  /* Fecha */
+  .fecha{
+    background:#eee;
+    padding:6px 14px;
+    border-radius:12px;
+    font-style:normal;
+  }
+
+  /* Suspendido */
+  .suspendido{
+    background:#ffebee;
+    padding:6px 14px;
+    border-radius:12px;
+    font-weight:900;
+  }
+
+}
+@media (max-width:768px){
+  .card table tr.ejido{
+    border:3px solid var(--azul);
+  }
+}
