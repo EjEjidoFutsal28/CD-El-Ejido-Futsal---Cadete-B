@@ -423,228 +423,219 @@ select{
 }
 
 /* =========================================================
-   RESPONSIVE MÓVIL — LIMPIO, PRO Y SIN CONFLICTOS
+   RESPONSIVE MÓVIL — LIMPIO, PRO Y ESTABLE
    ========================================================= */
 @media (max-width:768px){
 
-  /* ================= BASE ================= */
-  body{
-    padding:6px;
-    padding-bottom:70px;
-    font-size:15px;
-    background:#0b3c6d;
-  }
+/* ================= BASE ================= */
+body{
+  padding:6px;
+  padding-bottom:70px;
+  font-size:15px;
+  background:#0b3c6d;
+}
 
-  /* ================= NAV FIJO ================= */
-  nav{
-    position:fixed;
-    bottom:0;
-    left:0;
-    right:0;
-    background:linear-gradient(135deg,var(--azul),var(--azul2));
-    padding:10px 0;
-    z-index:999;
-    border-top:2px solid rgba(255,255,255,.2);
-  }
+/* ================= NAV FIJO ================= */
+nav{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  background:linear-gradient(135deg,var(--azul),var(--azul2));
+  padding:10px 0;
+  z-index:999;
+  border-top:2px solid rgba(255,255,255,.2);
+}
 
-  nav a{
-    font-size:14px;
-  }
+nav a{font-size:14px;}
 
-  /* ================= TÍTULOS ================= */
-  .titulo-principal{
-    font-size:22px;
-    letter-spacing:1px;
-    line-height:1.2;
-    padding:16px;
-  }
+/* ================= TÍTULOS ================= */
+.titulo-principal{
+  font-size:22px;
+  line-height:1.2;
+  padding:16px;
+}
 
-  .titulo-top{
-    font-size:12px;
-    padding:10px;
-  }
+.titulo-top{
+  font-size:12px;
+  padding:10px;
+}
 
-  .card h2{
-    font-size:20px;
-    margin-bottom:16px;
-  }
+.card h2{
+  font-size:20px;
+  margin-bottom:16px;
+}
 
-  /* ================= CARD ================= */
-  .card{
-    padding:20px 14px;
-    border-radius:20px;
-    margin-top:14px;
-    overflow-x:auto;
-  }
+/* ================= CARD ================= */
+.card{
+  padding:20px 14px;
+  border-radius:20px;
+  margin-top:14px;
+  overflow-x:auto;
+}
 
-  /* =========================================================
-     TABLA PLANTILLA (JUGADORES)
-     ========================================================= */
-  #plantilla{
-    min-width:720px;
-  }
+/* =========================================================
+   TABLA PLANTILLA
+   ========================================================= */
+#plantilla{min-width:720px;}
 
-  #plantilla th:nth-child(2),
-  #plantilla td:nth-child(2){
-    min-width:240px;
-    font-size:15px;
-    font-weight:700;
-  }
+/* Nombre jugador */
+#plantilla th:nth-child(2),
+#plantilla td:nth-child(2){
+  min-width:240px;
+  font-weight:700;
+  position:relative;
+  padding-bottom:30px;
+}
 
-  #plantilla th:nth-child(3),
-  #plantilla td:nth-child(3){
-    min-width:140px;
-    font-size:14px;
-    font-weight:700;
-  }
+/* Posición */
+#plantilla th:nth-child(3),
+#plantilla td:nth-child(3){
+  min-width:140px;
+  font-weight:700;
+}
 
-  #plantilla th:nth-child(4),
-  #plantilla td:nth-child(4),
-  #plantilla th:nth-child(5),
-  #plantilla td:nth-child(5),
-  #plantilla th:nth-child(7),
-  #plantilla td:nth-child(7),
-  #plantilla th:nth-child(8),
-  #plantilla td:nth-child(8),
-  #plantilla th:nth-child(9),
-  #plantilla td:nth-child(9){
-    display:none;
-  }
+/* Ocultar columnas secundarias */
+#plantilla th:nth-child(4),
+#plantilla td:nth-child(4),
+#plantilla th:nth-child(5),
+#plantilla td:nth-child(5),
+#plantilla th:nth-child(6),
+#plantilla td:nth-child(6),
+#plantilla th:nth-child(7),
+#plantilla td:nth-child(7),
+#plantilla th:nth-child(8),
+#plantilla td:nth-child(8),
+#plantilla th:nth-child(9),
+#plantilla td:nth-child(9){
+  display:none;
+}
 
-  /* =========================================================
-     TABLA CLASIFICACIÓN (COMPLETA + SCROLL)
-     ========================================================= */
-  .clasificacion{
-    min-width:980px;
-  }
+/* ===== TITULAR / SUPLENTE (ETIQUETA VISUAL) ===== */
+#plantilla tr.titular td:nth-child(2)::after{
+  content:"TITULAR";
+  position:absolute;
+  bottom:6px;
+  left:0;
+  background:#2e7d32;
+  color:white;
+  font-size:12px;
+  font-weight:900;
+  padding:4px 12px;
+  border-radius:14px;
+}
 
-  .clasificacion th,
-  .clasificacion td{
-    font-size:14px;
-    padding:10px 6px;
-  }
+#plantilla tr.suplente td:nth-child(2)::after{
+  content:"SUPLENTE";
+  position:absolute;
+  bottom:6px;
+  left:0;
+  background:#9e9e9e;
+  color:white;
+  font-size:12px;
+  font-weight:900;
+  padding:4px 12px;
+  border-radius:14px;
+}
 
-  .clasificacion th:nth-child(2),
-  .clasificacion td:nth-child(2){
-    min-width:300px;
-    text-align:left;
-    padding-left:12px;
-    font-weight:700;
-    font-size:15px;
-    color:var(--azul);
-  }
+/* =========================================================
+   TABLA CLASIFICACIÓN (SCROLL HORIZONTAL)
+   ========================================================= */
+.clasificacion{min-width:980px;}
 
-  /* =========================================================
-     PARTIDOS DE LA JORNADA (CARDS CENTRADAS)
-     ========================================================= */
-  #partidos thead{
-    display:none;
-  }
+.clasificacion th,
+.clasificacion td{
+  font-size:14px;
+  padding:10px 6px;
+}
 
-  #partidos tbody{
-    display:grid;
-    grid-template-columns:1fr;
-    gap:18px;
-  }
+.clasificacion th:nth-child(2),
+.clasificacion td:nth-child(2){
+  min-width:300px;
+  text-align:left;
+  font-weight:700;
+  color:var(--azul);
+}
 
-  #partidos tr{
-    background:white;
-    border-radius:22px;
-    padding:18px 16px;
-    border:3px solid var(--azul);
-    box-shadow:0 12px 26px rgba(0,0,0,.25);
-    text-align:center;
-  }
+/* =========================================================
+   PARTIDOS — TARJETAS
+   ========================================================= */
+#partidos thead{display:none;}
 
-  #partidos td{
-    display:block;
-    border:none;
-    padding:6px 0;
-  }
+#partidos tbody{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:18px;
+}
 
-  #partidos td.local,
-  #partidos td.visitante{
-    font-size:17px;
-    font-weight:800;
-    color:var(--azul);
-  }
+#partidos tr{
+  background:white;
+  border-radius:22px;
+  padding:18px 16px;
+  border:3px solid var(--azul);
+  box-shadow:0 12px 26px rgba(0,0,0,.25);
+  text-align:center;
+}
 
-  /* Escudos grandes */
-  #partidos img{
-    width:52px;
-    height:52px;
-    object-fit:contain;
-    margin:6px auto;
-  }
+#partidos td{
+  display:block;
+  border:none;
+  padding:6px 0;
+}
 
-  /* Marcador protagonista */
-  #partidos .marcador{
-    display:block;
-    max-width:260px;
-    margin:16px auto;
-    padding:16px 0;
-    background:linear-gradient(135deg,var(--azul),var(--azul2));
-    color:white;
-    font-size:30px;
-    font-weight:900;
-    border-radius:20px;
-    letter-spacing:2px;
-    box-shadow:0 8px 20px rgba(0,0,0,.3);
-  }
+#partidos td.local,
+#partidos td.visitante{
+  font-size:17px;
+  font-weight:800;
+  color:var(--azul);
+}
 
-  /* Suspendido igual de grande */
-  #partidos .suspendido{
-    display:block;
-    max-width:260px;
-    margin:16px auto;
-    padding:16px 0;
-    background:linear-gradient(135deg,#c62828,#e53935);
-    color:white;
-    font-size:26px;
-    font-weight:900;
-    border-radius:20px;
-    letter-spacing:1px;
-    box-shadow:0 8px 20px rgba(0,0,0,.3);
-  }
+/* Escudos */
+#partidos img{
+  width:52px;
+  height:52px;
+  margin:6px auto;
+}
 
-  /* Fecha */
-  #partidos .fecha{
-    display:inline-block;
-    background:#eee;
-    padding:8px 16px;
-    border-radius:14px;
-    font-size:15px;
-  }
+/* Marcador */
+#partidos .marcador{
+  max-width:260px;
+  margin:16px auto;
+  padding:16px 0;
+  background:linear-gradient(135deg,var(--azul),var(--azul2));
+  color:white;
+  font-size:30px;
+  font-weight:900;
+  border-radius:20px;
+}
 
-  /* =========================================================
-     RANKINGS Y VÍDEOS
-     ========================================================= */
-  .rankings{
-    grid-template-columns:1fr;
-  }
+/* Suspendido */
+#partidos .suspendido{
+  max-width:260px;
+  margin:16px auto;
+  padding:16px 0;
+  background:#c62828;
+  color:white;
+  font-size:26px;
+  font-weight:900;
+  border-radius:20px;
+}
 
-  .rankings h2,
-  .rankings h3{
-    font-size:18px;
-    text-align:center;
-    margin-bottom:12px;
-  }
+/* =========================================================
+   RANKINGS Y VÍDEOS
+   ========================================================= */
+.rankings,
+.videos{
+  grid-template-columns:1fr;
+}
 
-  .videos{
-    grid-template-columns:1fr;
-  }
+.rankings h2,
+.rankings h3{
+  font-size:18px;
+  text-align:center;
+}
 
-  .video-card{
-    border-radius:22px;
-  }
-
-  .video-card img{
-    aspect-ratio:16/9;
-    object-fit:cover;
-  }
-
-  .video-card p{
-    font-size:15px;
-  }
+.video-card{border-radius:22px;}
+.video-card p{font-size:15px;}
 
 }
