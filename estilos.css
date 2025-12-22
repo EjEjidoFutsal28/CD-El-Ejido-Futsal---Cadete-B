@@ -626,3 +626,26 @@ select{
     font-size:15px;
   }
 }
+/* ===== RESULTADOS GRANDES (MÓVIL) ===== */
+@media (max-width:768px){
+
+  #partidos .marcador{
+    display:block;
+    width:100%;
+    max-width:220px;
+    margin:14px auto;
+    background:linear-gradient(135deg,var(--azul),var(--azul2));
+    color:white;
+    padding:12px 0;
+    border-radius:16px;
+    font-size:26px;      /* 👈 MÁS GRANDE */
+    font-weight:900;
+    letter-spacing:2px;
+  }
+
+  #partidos .local,
+  #partidos .visitante{
+    font-size:16px;
+  }
+
+}
