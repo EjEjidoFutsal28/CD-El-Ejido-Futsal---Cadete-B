@@ -700,6 +700,37 @@ select{
     border-radius:14px;
     font-size:15px;
     font-weight:900;
+  }@media (max-width:768px){
+
+  /* Suspendido como marcador grande */
+  #partidos .suspendido{
+    display:block;
+    width:100%;
+    max-width:260px;
+    margin:16px auto;
+    background:linear-gradient(135deg,#c62828,#e53935);
+    color:white;
+    padding:16px 0;
+    border-radius:20px;
+    font-size:26px;
+    font-weight:900;
+    letter-spacing:1px;
+    box-shadow:0 8px 20px rgba(0,0,0,.3);
+    text-align:center;
+  }
+
+}
+
+}
+@media (max-width:768px){
+
+  /* Escudos de los equipos */
+  #partidos img{
+    width:44px;
+    height:44px;
+    object-fit:contain;
+    margin:6px auto;
+    display:inline-block;
   }
 
 }
