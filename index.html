@@ -24,7 +24,13 @@
   </div>
 </div>
 
-<!-- ================= PLANTILLA ================= -->
+<div class="card fade equipo-card">
+  <img id="Equipo" src="equipo.png" alt="CD El Ejido Futsal">
+  <div class="equipo-info">
+    Equipo del C.D. El Ejido Futsal
+  </div>
+</div>
+
 <div class="card fade">
   <h2>👥 Jugadores del equipo</h2>
 
@@ -53,42 +59,42 @@
 
 <!-- ================= RANKINGS ================= -->
 <div class="card fade">
-
   <div class="rankings">
 
     <!-- GOLEADORES -->
     <div class="ranking-card">
-    <table class="ranking">
-      <thead>
-        <tr>
-          <th colspan="3">🥅 Ranking de goleadores</th>
-        </tr>
-        <tr>
-          <th>Pos</th>
-          <th>Jugador</th>
-          <th>Goles</th>
-        </tr>
-      </thead>
-      <tbody id="rankingGoles"></tbody>
-    </table>
+      <table class="ranking">
+        <thead>
+          <tr>
+            <th colspan="3">🥅 Ranking de goleadores</th>
+          </tr>
+          <tr>
+            <th>Pos</th>
+            <th>Jugador</th>
+            <th>Goles</th>
+          </tr>
+        </thead>
+        <tbody id="rankingGoles"></tbody>
+      </table>
     </div>
 
     <!-- ASISTENCIAS -->
     <div class="ranking-card">
-    <table>
-      <thead>
-        <tr>
-          <th colspan="3">🎯 Ranking de asistencias</th>
-        </tr>
-        <tr>
-          <th>Pos</th>
-          <th>Jugador</th>
-          <th>Asistencias</th>
-        </tr>
-      </thead>
-      <tbody id="rankingAsist"></tbody>
-    </table>
+      <table>
+        <thead>
+          <tr>
+            <th colspan="3">🎯 Ranking de asistencias</th>
+          </tr>
+          <tr>
+            <th>Pos</th>
+            <th>Jugador</th>
+            <th>Asistencias</th>
+          </tr>
+        </thead>
+        <tbody id="rankingAsist"></tbody>
+      </table>
     </div>
+
   </div>
 </div>
 
@@ -100,32 +106,54 @@
 
 <!-- ================= SCRIPT ================= -->
 <script>
-/* ===== DATOS JUGADORES ===== */
+/* ================= FUNCIÓN CALCULAR EDAD ================= */
+function calcularEdad(fecha) {
+  if (fecha === "-") return "-";
+
+  const [d, m, y] = fecha.split("/");
+  const nacimiento = new Date(y, m - 1, d);
+  const hoy = new Date();
+
+  let edad = hoy.getFullYear() - nacimiento.getFullYear();
+
+  const cumpleEsteAño = new Date(
+    hoy.getFullYear(),
+    nacimiento.getMonth(),
+    nacimiento.getDate()
+  );
+
+  if (hoy < cumpleEsteAño) edad--;
+
+  return edad;
+}
+
+/* ================= DATOS JUGADORES ================= */
 const jugadores = [
-  {n:15,nombre:"Juanma",pos:"Portero",edad:14,fn:"11/04/2011",pj:8,tit:8,sup:0,noc:0,g:0,a:1,ama:0,roj:0},
-  {n:17,nombre:"Luis",pos:"Portero",edad:14,fn:"17/08/2011",pj:8,tit:0,sup:8,noc:0,g:1,a:0,ama:0,roj:0},
-  {n:8,nombre:"Iván",pos:"Pívot",edad:14,fn:"13/12/2011",pj:4,tit:0,sup:4,noc:0,g:0,a:0,ama:0,roj:0},
-  {n:9,nombre:"Juan Antonio",pos:"Ala Pívot",edad:14,fn:"09/11/2011",pj:6,tit:0,sup:6,noc:2,g:0,a:0,ama:0,roj:0},
-  {n:11,nombre:"Javier",pos:"Ala",edad:14,fn:"13/12/2011",pj:8,tit:7,sup:1,noc:0,g:1,a:2,ama:0,roj:0},
-  {n:14,nombre:"Juan",pos:"Ala Pívot",edad:14,fn:"12/11/2011",pj:8,tit:8,sup:0,noc:0,g:6,a:3,ama:0,roj:0},
-  {n:16,nombre:"Alejandro",pos:"Ala",edad:14,fn:"04/08/2011",pj:8,tit:2,sup:6,noc:0,g:3,a:4,ama:1,roj:0},
-  {n:21,nombre:"Daniel",pos:"Ala",edad:13,fn:"28/12/2011",pj:7,tit:0,sup:7,noc:1,g:1,a:0,ama:0,roj:0},
-  {n:22,nombre:"Pablo",pos:"Cierre",edad:14,fn:"20/01/2011",pj:8,tit:8,sup:0,noc:0,g:1,a:0,ama:4,roj:0},
-  {n:24,nombre:"Iker",pos:"Ala Cierre",edad:14,fn:"30/09/2011",pj:8,tit:7,sup:1,noc:0,g:4,a:1,ama:2,roj:0},
-  {n:30,nombre:"Domingo",pos:"Pívot",edad:14,fn:"-",pj:7,tit:0,sup:7,noc:1,g:1,a:1,ama:1,roj:0}
+  {n:15,nombre:"Juanma",pos:"Portero",fn:"11/04/2011",pj:8,tit:8,sup:0,noc:0,g:0,a:1,ama:0,roj:0},
+  {n:17,nombre:"Luis",pos:"Portero",fn:"17/08/2011",pj:8,tit:0,sup:8,noc:0,g:1,a:0,ama:0,roj:0},
+  {n:8,nombre:"Iván",pos:"Pívot",fn:"13/12/2011",pj:4,tit:0,sup:4,noc:0,g:0,a:0,ama:0,roj:0},
+  {n:9,nombre:"Juan Antonio",pos:"Ala Pívot",fn:"09/11/2011",pj:6,tit:0,sup:6,noc:2,g:0,a:0,ama:0,roj:0},
+  {n:11,nombre:"Javier",pos:"Ala",fn:"13/12/2011",pj:8,tit:7,sup:1,noc:0,g:1,a:2,ama:0,roj:0},
+  {n:14,nombre:"Juan",pos:"Ala Pívot",fn:"12/11/2011",pj:8,tit:8,sup:0,noc:0,g:6,a:3,ama:0,roj:0},
+  {n:16,nombre:"Alejandro",pos:"Ala",fn:"04/08/2011",pj:8,tit:2,sup:6,noc:0,g:3,a:4,ama:1,roj:0},
+  {n:21,nombre:"Daniel",pos:"Ala",fn:"28/12/2011",pj:7,tit:0,sup:7,noc:1,g:1,a:0,ama:0,roj:0},
+  {n:22,nombre:"Pablo",pos:"Cierre",fn:"20/01/2011",pj:8,tit:8,sup:0,noc:0,g:1,a:0,ama:4,roj:0},
+  {n:24,nombre:"Iker",pos:"Ala Cierre",fn:"30/09/2011",pj:8,tit:7,sup:1,noc:0,g:4,a:1,ama:2,roj:0},
+  {n:30,nombre:"Domingo",pos:"Pívot",fn:"-",pj:7,tit:0,sup:7,noc:1,g:1,a:1,ama:1,roj:0}
 ];
 
-/* ===== PLANTILLA ===== */
+/* ================= PLANTILLA ================= */
 const tbody = document.getElementById("tbodyPlantilla");
 
 tbody.innerHTML = jugadores.map(j => {
   const mg = j.pj ? (j.g / j.pj).toFixed(2) : "0.00";
+
   return `
     <tr class="fade">
       <td>${j.n}</td>
       <td>${j.nombre}</td>
       <td>${j.pos}</td>
-      <td>${j.edad}</td>
+      <td>${calcularEdad(j.fn)}</td>
       <td>${j.fn}</td>
       <td>${j.pj}</td>
       <td>${j.tit}</td>
@@ -140,7 +168,7 @@ tbody.innerHTML = jugadores.map(j => {
   `;
 }).join("");
 
-/* ===== RANKINGS ===== */
+/* ================= RANKINGS ================= */
 const rankingG = document.getElementById("rankingGoles");
 const rankingA = document.getElementById("rankingAsist");
 const medallas = ["🥇","🥈","🥉"];
@@ -168,7 +196,7 @@ rankingA.innerHTML = jugadores
       <td>${j.a}</td>
     </tr>
   `).join("");
-
 </script>
+
 </body>
 </html>

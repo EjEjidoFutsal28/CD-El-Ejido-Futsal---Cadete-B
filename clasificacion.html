@@ -62,7 +62,7 @@
 <!-- ================= PARTIDOS ================= -->
 <div class="card fade">
   <h2>🗓️ Partidos de la jornada</h2>
-  <table>
+  <table id="tabla-partidos">
     <thead>
       <tr>
         <th>Local</th>
@@ -187,6 +187,10 @@ const nextBtn = document.getElementById("nextJornada");
 const jornadasDisponibles = Object.keys(jornadas).map(Number);
 const minJornada = Math.min(...jornadasDisponibles);
 const maxJornada = Math.max(...jornadasDisponibles);
+function actualizarFlechas(j) {
+  prevBtn.disabled = j <= minJornada;
+  nextBtn.disabled = j >= maxJornada;
+}
 
 /* Inicial */
 jornadaActual.textContent = filtro.value;
@@ -213,6 +217,7 @@ function cambiarJornada(j) {
   filtro.value = j;
   jornadaActual.textContent = j;
   pintar(j);
+  actualizarFlechas(j);
 }
 /* ===================== FUNCIÓN PRINCIPAL ===================== */
 function pintar(j){
@@ -322,12 +327,14 @@ function pintar(j){
       </a>`;
   });
 }
-
 filtro.onchange = () => {
-  jornadaActual.textContent = filtro.value;
-  pintar(+filtro.value);
+  const j = +filtro.value;
+  jornadaActual.textContent = j;
+  pintar(j);
+  actualizarFlechas(j); // ← AÑADIR
 };
 pintar(+filtro.value);
+actualizarFlechas(+filtro.value);
 </script>
 </body>
 </html>
