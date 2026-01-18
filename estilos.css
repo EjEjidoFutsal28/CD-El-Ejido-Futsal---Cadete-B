@@ -544,65 +544,33 @@ img:hover{
   }
 
   /* =================================================
-     CLASIFICACIÓN
+     CLASIFICACIÓN — TABLA AJUSTABLE
      ================================================= */
   .clasificacion{
-    width:auto;
-    min-width:100%;
+    width:auto;          /* tabla se ajusta al contenido */
+    min-width:100%;      /* evita que quede demasiado estrecha */
+    table-layout:auto;   /* columnas adaptables */
   }
 
   .clasificacion th,
   .clasificacion td{
     font-size:14px;
-    padding:8px 6px;
-    white-space:nowrap;
+    padding:6px 8px;
+    white-space:nowrap;  /* evita que el contenido se rompa en varias líneas */
     text-align:center;
   }
 
-  /* Cabecera */
-  .clasificacion thead th{
-    color:#fff !important;
-  }
-
-  /* ================= Columna EQUIPO ================= */
+  /* Columna del nombre del equipo centrada y ajustada */
   .clasificacion th:nth-child(2),
   .clasificacion td:nth-child(2){
-    text-align:center;
+    text-align:left;
     white-space:nowrap;
-    font-weight:700;
-    width:max-content;      /* Ajusta al nombre más largo */
-    min-width:150px;        /* Evita que sea demasiado estrecha */
   }
 
-  /* ================= COLUMNAS VISIBLES ================= */
-  /* Mostrar Pts, PJ, PG, PE, PP, GF, GC, DG */
-  .clasificacion th:nth-child(3),
-  .clasificacion td:nth-child(3),
-  .clasificacion th:nth-child(4),
-  .clasificacion td:nth-child(4),
-  .clasificacion th:nth-child(5),
-  .clasificacion td:nth-child(5),
-  .clasificacion th:nth-child(6),
-  .clasificacion td:nth-child(6),
-  .clasificacion th:nth-child(7),
-  .clasificacion td:nth-child(7),
-  .clasificacion th:nth-child(8),
-  .clasificacion td:nth-child(8),
-  .clasificacion th:nth-child(9),
-  .clasificacion td:nth-child(9),
-  .clasificacion th:nth-child(10),
-  .clasificacion td:nth-child(10),
-  .clasificacion th:nth-child(11),
-  .clasificacion td:nth-child(11)
-  {
-    display:table-cell;
-  }
-
-  /* Alineación de PG, PE, PP */
-  .clasificacion td:nth-child(5),
-  .clasificacion td:nth-child(6),
-  .clasificacion td:nth-child(7){
-    font-weight:600;
+  /* Resalta fila del equipo local */
+  tr.ejido{
+    background:rgb(222,240,247) !important;
+    font-weight:900;
   }
 
   /* =================================================
@@ -654,7 +622,7 @@ img:hover{
     align-items:center;
     justify-content:center;
     height:90px;
-    max-width:95%;       /* Más ancho que antes */
+    max-width:95%;       
     margin:16px auto;
     font-size:34px;
     font-weight:900;
@@ -679,12 +647,21 @@ img:hover{
   }
 
   /* =================================================
-     PLANTILLA
+     PLANTILLA — TABLA AJUSTABLE
      ================================================= */
   #plantilla{
-    min-width:880px;
+    min-width:880px;          /* permite scroll si hay muchas columnas */
+    table-layout: fixed;       /* columnas se ajustan al contenido */
   }
 
+  #plantilla th,
+  #plantilla td{
+    white-space:nowrap;       /* evita que el texto se rompa */
+    font-size:14px;
+    padding:6px 8px;
+  }
+
+  /* Oculta columnas menos importantes en móvil */
   #plantilla th:nth-child(4),
   #plantilla td:nth-child(4),
   #plantilla th:nth-child(5),
