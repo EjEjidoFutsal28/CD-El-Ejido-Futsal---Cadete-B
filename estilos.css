@@ -475,417 +475,239 @@ img:hover{
   letter-spacing:.3px;
 }
 
-@keyframes fadeIn{
-  from{opacity:0; transform:translateY(10px);}
-  to{opacity:1; transform:translateY(0);}
-}
-
-/* =========================================================
-   RESPONSIVE MÓVIL — FINAL LIMPIO Y FUNCIONAL
-   ========================================================= */
 @media (max-width:768px){
 
-/* ================= BASE ================= */
-body{
-  padding:6px;
-  padding-bottom:80px;
-  font-size:15px;
-  background:#0b3c6d;
-}
+  /* ================= BASE ================= */
+  body{
+    padding:6px;
+    padding-bottom:80px;
+    font-size:15px;
+    background:#0b3c6d;
+  }
 
-/* ================= NAV FIJO ================= */
-nav{
-  position:fixed;
-  bottom:0;
-  left:0;
-  right:0;
-  background:linear-gradient(135deg,var(--azul),var(--azul2));
-  padding:10px 0;
-  z-index:999;
-  border-top:2px solid rgba(255,255,255,.25);
-}
+  /* ================= NAV FIJO ================= */
+  nav{
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    background:linear-gradient(135deg,var(--azul),var(--azul2));
+    padding:10px 0;
+    z-index:999;
+    border-top:2px solid rgba(255,255,255,.25);
+  }
 
-nav a{
-  font-size:14px;
-  padding:8px 16px;
-  border-radius:14px;
-}
+  nav a{
+    font-size:14px;
+    padding:8px 16px;
+    border-radius:14px;
+  }
 
-nav a.activo{
-  background:rgba(255,255,255,.18);
-  border-bottom:none;
-}
+  nav a.activo{
+    background:rgba(255,255,255,.18);
+    border-bottom:none;
+  }
 
-/* ================= IMAGEN EQUIPO ================= */
-#Equipo{
-  max-width:100%;
-  margin:14px auto 22px;
-  border-radius:18px;
-}
+  /* ================= IMAGEN EQUIPO ================= */
+  #Equipo{
+    max-width:100%;
+    margin:14px auto 22px;
+    border-radius:18px;
+  }
 
-/* ================= TÍTULOS ================= */
-.titulo-principal{
-  font-size:22px;
-  line-height:1.2;
-  padding:16px;
-  letter-spacing:2px;
-}
+  /* ================= TÍTULOS ================= */
+  .titulo-principal{
+    font-size:22px;
+    line-height:1.2;
+    padding:16px;
+    letter-spacing:2px;
+  }
 
-.titulo-top{
-  font-size:12px;
-  padding:10px;
-}
+  .titulo-top{
+    font-size:12px;
+    padding:10px;
+  }
 
-/* ================= CARD ================= */
-.card{
-  padding:20px 14px;
-  border-radius:20px;
-  margin-top:14px;
-  overflow-x:auto;
-  -webkit-overflow-scrolling:touch;
-}
+  /* ================= CARD ================= */
+  .card{
+    padding:20px 14px;
+    border-radius:20px;
+    margin-top:14px;
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+  }
 
-/* ================= TÍTULOS CARD ================= */
-.card h2{
-  font-size:22px;
-  margin-bottom:18px;
-  text-align:center;
-}
+  .card h2{
+    font-size:22px;
+    margin-bottom:18px;
+    text-align:center;
+  }
 
-/* =================================================
-   CLASIFICACIÓN
-   ================================================= */
-.clasificacion{
-  min-width:900px;
-}
+  /* =================================================
+     CLASIFICACIÓN
+     ================================================= */
+  .clasificacion{
+    width:auto;
+    min-width:100%;
+  }
 
-.clasificacion th,
-.clasificacion td{
-  font-size:14px;
-  padding:10px 6px;
-}
+  .clasificacion th,
+  .clasificacion td{
+    font-size:14px;
+    padding:8px 6px;
+    white-space:nowrap;
+    text-align:center;
+  }
 
-/* Cabecera blanca */
-.clasificacion thead th{
-  color:#fff;
-}
+  /* Cabecera */
+  .clasificacion thead th{
+    color:#fff !important;
+  }
 
-/* Columna EQUIPO */
-.clasificacion th:nth-child(2),
-.clasificacion td:nth-child(2){
-  min-width:300px;
-  text-align:center;
-  font-weight:700;
-  font-size:13px;
-  color: rgb(0, 0, 0);
-  letter-spacing:.2px;
-}
+  /* ================= Columna EQUIPO ================= */
+  .clasificacion th:nth-child(2),
+  .clasificacion td:nth-child(2){
+    text-align:center;
+    white-space:nowrap;
+    font-weight:700;
+    width:max-content;      /* Ajusta al nombre más largo */
+    min-width:150px;        /* Evita que sea demasiado estrecha */
+  }
 
-.clasificacion td:nth-child(2) img{
-  width:22px;
-  height:22px;
-}
+  /* ================= COLUMNAS VISIBLES ================= */
+  /* Mostrar Pts, PJ, PG, PE, PP, GF, GC, DG */
+  .clasificacion th:nth-child(3),
+  .clasificacion td:nth-child(3),
+  .clasificacion th:nth-child(4),
+  .clasificacion td:nth-child(4),
+  .clasificacion th:nth-child(5),
+  .clasificacion td:nth-child(5),
+  .clasificacion th:nth-child(6),
+  .clasificacion td:nth-child(6),
+  .clasificacion th:nth-child(7),
+  .clasificacion td:nth-child(7),
+  .clasificacion th:nth-child(8),
+  .clasificacion td:nth-child(8),
+  .clasificacion th:nth-child(9),
+  .clasificacion td:nth-child(9),
+  .clasificacion th:nth-child(10),
+  .clasificacion td:nth-child(10),
+  .clasificacion th:nth-child(11),
+  .clasificacion td:nth-child(11)
+  {
+    display:table-cell;
+  }
 
-/* Ocultar columnas secundarias */
-.clasificacion th:nth-child(n+5):nth-child(-n+7),
-.clasificacion td:nth-child(n+5):nth-child(-n+7){
-  display:none;
-}
+  /* Alineación de PG, PE, PP */
+  .clasificacion td:nth-child(5),
+  .clasificacion td:nth-child(6),
+  .clasificacion td:nth-child(7){
+    font-weight:600;
+  }
 
-/* =================================================
-   PARTIDOS — TARJETAS
-   ================================================= */
-
-/* Ocultar cabecera */
-#partidos thead{
-  display:none;
-}
-
-/* Tarjeta partido */
-#partidos tr{
-  display:grid;
-  grid-template-columns:1fr;
-  gap:10px;
-  background:#fff;
-  border-radius:22px;
-  padding:18px 16px;
-  border:3px solid var(--azul);
-  box-shadow:0 12px 26px rgba(0,0,0,.25);
-  margin-bottom:18px;
-  text-align:center;
-  animation:fadeIn .4s ease;
-}
-
-/* Celdas */
-#partidos td{
-  display:block;
-  border:none;
-  padding:4px 0;
-}
-
-/* Equipos */
-#partidos td.local,
-#partidos td.visitante{
-  font-size:17px;
-  font-weight:800;
-  color:var(--azul);
-}
-
-/* Escudos */
-#partidos img{
-  width:56px;
-  height:56px;
-  margin:8px auto;
-  object-fit:contain;
-}
-
-/* =================================================
-   MARCADOR / SUSPENDIDO
-   ================================================= */
-#partidos .marcador,
-#partidos .suspendido{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  width:100%;
-  max-width:260px;
-  height:90px;
-  margin:16px auto;
-  font-weight:900;
-  border-radius:22px;
-  color:#fff;
-}
-
-#partidos .marcador{
-  background:linear-gradient(135deg,var(--azul),var(--azul2));
-  font-size:34px;
-  letter-spacing:2px;
-}
-
-#partidos .suspendido{
-  background:#c62828;
-  font-size:30px;
-  letter-spacing:1px;
-}
-
-/* =================================================
-   RANKINGS Y VÍDEOS
-   ================================================= */
-.rankings,
-.videos{
-  grid-template-columns:1fr;
-}
-
-.video-card{
-  border-radius:22px;
-}
-
-.video-card p{
-  font-size:15px;
-}
-
-/* ================= FOOTER ================= */
-footer{
-  font-size:13px;
-  padding:20px;
-}
-/* Quitar cabecera Local / Visitante en móvil */
-#partidos thead{
-  display:none;
-}
-/* =================================================
-   PLANTILLA — COLUMNAS VISIBLES EN MÓVIL
-   Nº | Jugador | Pos | PJ | Tit | Sup | G | A | Ama | Roj
-   ================================================= */
-
-/* Forzar scroll horizontal */
-#plantilla{
-  min-width:900px;
-}
-
-/* =================================================
-   PLANTILLA — COLUMNAS VISIBLES EN MÓVIL
-   Nº | Jugador | Pos | PJ | TIT | SUP | G | A | AMA | ROJ
-   ================================================= */
-
-/* Scroll horizontal en móvil */
-#plantilla{
-  min-width:880px;
-}
-
-/* Nº */
-#plantilla th:nth-child(1),
-#plantilla td:nth-child(1){
-  min-width:50px;
-  font-weight:700;
-}
-
-/* Jugador */
-#plantilla th:nth-child(2),
-#plantilla td:nth-child(2){
-  min-width:240px;
-  font-weight:800;
-}
-
-/* Posición */
-#plantilla th:nth-child(3),
-#plantilla td:nth-child(3){
-  min-width:90px;
-}
-
-/* ❌ Edad */
-#plantilla th:nth-child(4),
-#plantilla td:nth-child(4){
-  display:none;
-}
-
-/* ❌ Fecha Nac. */
-#plantilla th:nth-child(5),
-#plantilla td:nth-child(5){
-  display:none;
-}
-
-/* PJ */
-#plantilla th:nth-child(6),
-#plantilla td:nth-child(6){
-  min-width:60px;
-}
-
-/* TIT */
-#plantilla th:nth-child(7),
-#plantilla td:nth-child(7){
-  min-width:60px;
-}
-
-/* SUP */
-#plantilla th:nth-child(8),
-#plantilla td:nth-child(8){
-  min-width:60px;
-}
-
-/* ❌ NOC */
-#plantilla th:nth-child(9),
-#plantilla td:nth-child(9){
-  display:none;
-}
-
-/* Goles */
-#plantilla th:nth-child(10),
-#plantilla td:nth-child(10){
-  min-width:60px;
-  font-weight:700;
-}
-
-/* Asistencias */
-#plantilla th:nth-child(11),
-#plantilla td:nth-child(11){
-  min-width:60px;
-}
-
-/* ❌ MG */
-#plantilla th:nth-child(12),
-#plantilla td:nth-child(12){
-  display:none;
-}
-
-/* Amarillas */
-#plantilla th:nth-child(13),
-#plantilla td:nth-child(13){
-  min-width:60px;
-}
-
-/* Rojas */
-#plantilla th:nth-child(14),
-#plantilla td:nth-child(14){
-  min-width:60px;
-}
-/* Cabecera clasificación: TODO blanco */
-.clasificacion thead th{
-  color:#fff !important;
-}
-
-/* Columna EQUIPO: SOLO filas de datos */
-.clasificacion tbody td:nth-child(2){
-  color: black;
-  font-weight:500;
-}
-/* Columna EQUIPO más estrecha en móvil */
-.clasificacion th:nth-child(2),
-.clasificacion td:nth-child(2){
-  min-width:120px;      /* reduce el ancho */
-  max-width:140px;
-  font-size:13px;       /* texto un poco más pequeño */
-  white-space:nowrap;  /* evita saltos de línea */
-  overflow:hidden;
-  text-overflow:ellipsis; /* … si no cabe */
-}
-.clasificacion th:nth-child(3),
-.clasificacion td:nth-child(3){
-  min-width:30px;
-  max-width:40px;
-}
-.clasificacion th:nth-child(4),
-.clasificacion td:nth-child(4){
-  min-width:30px;
-  max-width:40px;
-}
-.clasificacion th:nth-child(5),
-.clasificacion td:nth-child(5){
-  min-width:30px;
-  max-width:40px;
-}
-.clasificacion th:nth-child(6),
-.clasificacion td:nth-child(6){
-  min-width:30px;
-  max-width:40px;
-}
-.clasificacion th:nth-child(7),
-.clasificacion td:nth-child(7){
-  min-width:30px;
-  max-width:40px;
-}
-/* =================================================
-   CLASIFICACIÓN — RESPONSIVE LIMPIO
-   ================================================= */
-
-/* 1️⃣ Ocultar columnas 5, 6 y 7 */
-.clasificacion th:nth-child(5),
-.clasificacion td:nth-child(5),
-.clasificacion th:nth-child(6),
-.clasificacion td:nth-child(6),
-.clasificacion th:nth-child(7),
-.clasificacion td:nth-child(7){
-  display:none;
-}
-
-/* 2️⃣ Dar el MISMO ancho a TODAS las columnas visibles
-   (excepto EQUIPO, que suele ser más ancha) */
-.clasificacion th:not(:nth-child(2)):not(:nth-child(5)):not(:nth-child(6)):not(:nth-child(7)),
-.clasificacion td:not(:nth-child(2)):not(:nth-child(5)):not(:nth-child(6)):not(:nth-child(7)){
-  min-width:30px;
-  max-width:30px;
-  text-align:center;
-}
-
-/* 3️⃣ Columna EQUIPO un poco más ancha */
-.clasificacion th:nth-child(2),
-.clasificacion td:nth-child(2){
-  min-width:90px;
-  max-width:90px;
-  text-align:center;
-}
-/* Partido suspendido — texto más pequeño en móvil */
-#partidos .suspendido{
-  font-size:22px;     /* antes era grande */
-  height:60px;        /* menos alto */
-  padding:10px 0;
-  letter-spacing:1px;
-}
-
-}
-
-@media (max-width:768px){
+  /* =================================================
+     PARTIDOS — TARJETAS
+     ================================================= */
   #tabla-partidos thead{
+    display:none !important; /* Ocultar cabecera */
+  }
+
+  #tabla-partidos tr{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:10px;
+    background:#fff;
+    border-radius:22px;
+    padding:18px 16px;
+    border:3px solid var(--azul);
+    box-shadow:0 12px 26px rgba(0,0,0,.25);
+    margin-bottom:18px;
+    text-align:center;
+    animation:fadeIn .4s ease;
+  }
+
+  #tabla-partidos td{
+    display:block;
+    border:none;
+    padding:4px 0;
+  }
+
+  /* Equipos */
+  #tabla-partidos td:nth-child(1),
+  #tabla-partidos td:nth-child(3){
+    font-size:17px;
+    font-weight:800;
+    color:var(--azul);
+  }
+
+  /* Escudos */
+  #tabla-partidos img{
+    width:56px;
+    height:56px;
+    margin:8px auto;
+    object-fit:contain;
+  }
+
+  /* Marcador azul más largo y centrado */
+  #tabla-partidos .resultado .marcador{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    height:90px;
+    max-width:95%;       /* Más ancho que antes */
+    margin:16px auto;
+    font-size:34px;
+    font-weight:900;
+    border-radius:22px;
+    background:linear-gradient(135deg,var(--azul),var(--azul2));
+    color:#fff;
+  }
+
+  /* Suspendido */
+  #tabla-partidos .resultado .suspendido{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    height:60px;
+    max-width:95%;
+    margin:16px auto;
+    font-size:22px;
+    font-weight:900;
+    border-radius:22px;
+    background:#c62828;
+    color:#fff;
+  }
+
+  /* =================================================
+     PLANTILLA
+     ================================================= */
+  #plantilla{
+    min-width:880px;
+  }
+
+  #plantilla th:nth-child(4),
+  #plantilla td:nth-child(4),
+  #plantilla th:nth-child(5),
+  #plantilla td:nth-child(5),
+  #plantilla th:nth-child(9),
+  #plantilla td:nth-child(9),
+  #plantilla th:nth-child(12),
+  #plantilla td:nth-child(12){
     display:none;
   }
+
+  /* =================================================
+     RANKINGS / VIDEOS
+     ================================================= */
+  .rankings,
+  .videos{
+    grid-template-columns:1fr;
+  }
+
+  /* ================= FOOTER ================= */
+  footer{
+    font-size:13px;
+    padding:20px;
+  }
+
 }

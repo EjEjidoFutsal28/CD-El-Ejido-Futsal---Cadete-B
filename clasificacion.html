@@ -119,10 +119,10 @@ const jornadas = {
   6:[["EJI","ADR",0,0],["DAL","SPO",3,2],["POLI","VIC",1,6],"SLU"],
   7:[["VIC","EJI",4,2],["SLU","POLI",8,5],["ADR","DAL",1,3],"SPO"],
   8:[["SLU","EJI",5,2],["ADR","SPO",3,3],["VIC","DAL",2,2],"POLI"],
-  9:[["EJI","POLI",1,4],["DAL","SLU",6,2],["SPO","VIC","15/01 · 18:00"],"ADR"],
-  10:[["VIC","ADR",8,1],["SLU","SPO",3,3],["POLI","DAL","14/01 · 18:00"],"EJI"],
-  11:[["ADR","SLU",5,5],["SPO","POLI","12/01 · 18:00"],["DAL","EJI","17/01 · 12:00"],"VIC"],
-  12:[["SLU","VIC","18/01"],["POLI","ADR","18/01"],["EJI","SPO","18/01"],"DAL"],
+  9:[["EJI","POLI",1,4],["DAL","SLU",6,2],["SPO","VIC",4,5],"ADR"],
+  10:[["VIC","ADR",8,1],["SLU","SPO",3,3],["POLI","DAL",7,3],"EJI"],
+  11:[["ADR","SLU",5,5],["SPO","POLI",6,6],["DAL","EJI",6,3],"VIC"],
+  12:[["SLU","VIC",3,7],["POLI","ADR",1,2],["EJI","SPO",5,1],"DAL"],
   13:[["VIC","POLI","25/01"],["ADR","EJI","25/01"],["SPO","DAL","25/01"],"SLU"],
   14:[["POLI","SLU","08/02"],["EJI","VIC","08/02"],["DAL","ADR","08/02"],"SPO"]
 };
@@ -178,7 +178,7 @@ const videos = document.getElementById("videos");
 Object.keys(jornadas).forEach(j=>{
   filtro.innerHTML += `<option value="${j}">Jornada ${j}</option>`;
 });
-filtro.value = 11;
+filtro.value = 12;
 
 const jornadaActual = document.getElementById("jornadaActual");
 const prevBtn = document.getElementById("prevJornada");
