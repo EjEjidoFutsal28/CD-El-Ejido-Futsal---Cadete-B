@@ -199,21 +199,21 @@ tr.ejido{
 }
 
 .equipo .escudo{
-  width:28px;
-  height:28px;
+  width:32px;
+  height:32px;
   object-fit:contain;
   flex-shrink:0;
 }
 
 .nombre-equipo{
   line-height:1.2;
-  font-weight:600;
+  font-weight:700;
 }
 
 /* ================= ESCUDOS ================= */
 .escudo.mini{
-  width:22px;
-  height:22px;
+  width:36px;
+  height:36px;
 }
 
 /* ================= PUNTOS ================= */
@@ -245,7 +245,7 @@ tr.ejido{
 
 .fecha{
   font-style:italic;
-  color:#555;
+  color:#303030;
 }
 
 /* ================= DESCANSO ================= */
