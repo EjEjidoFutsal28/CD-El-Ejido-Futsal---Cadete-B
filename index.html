@@ -1,25 +1,45 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>C.D. El Ejido Futsal · Plantilla</title>
-<link rel="stylesheet" href="estilos.css">
-<style>
-  th {
-    cursor: pointer;
-  }
-  th:hover {
-    text-decoration: underline;
-  }
-  /* Fotos verticales (más altas que anchas) */
-  .foto-jugador {
-    width: 40px;
-    height: 60px;
-    object-fit: cover;
-    border-radius: 14px;
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>C.D. El Ejido Futsal · Plantilla</title>
+  <link rel="stylesheet" href="estilos.css">
+  <style>
+    th {
+      cursor: pointer;
+    }
+    th:hover {
+      text-decoration: underline;
+    }
+
+    /* Fotos más pequeñas (verticales) */
+    .foto-jugador {
+      width: 30px;   /* más estrecha */
+      height: 45px;  /* altura proporcional */
+      object-fit: cover;
+      border-radius: 12px; /* oval vertical */
+    }
+
+    /* Ajustar columna de foto */
+    #plantilla td:nth-child(2),
+    #plantilla th:nth-child(2){
+      width: 40px;
+      padding: 4px 2px;
+    }
+
+    #plantilla td:nth-child(1),
+    #plantilla th:nth-child(1){
+      width: 55px;
+      padding: 4px 2px;
+    }
+
+    #plantilla td:nth-child(6),
+    #plantilla th:nth-child(6){
+      width: 80px;
+      padding: 4px 2px;
+    }
+  </style>
 </head>
 <body>
 
@@ -50,11 +70,12 @@
 <!-- ================= TABLA PLANTILLA ================= -->
 <div class="card fade">
   <h2>👥 Jugadores del equipo</h2>
+
   <table id="plantilla">
     <thead>
       <tr>
         <th>Nº</th>
-        <th>FOTO</th>
+        <th>IMG</th>
         <th>JUG</th>
         <th>POS</th>
         <th>EDAD</th>
@@ -197,11 +218,12 @@ const dataInicial = [...jugadores].sort((a,b)=>{
   if(posA!==posB) return posA-posB;
   return a.n-b.n;
 });
+
 renderTabla(dataInicial);
 
-/* ================= ORDEN CLICK EN HEADERS CON ASC/DESC ================= */
+/* ================= ORDEN CLICK EN HEADERS (ASC/DESC) ================= */
 const headers = document.querySelectorAll("#plantilla th");
-let ordenActual = { columna: null, ascendente: true };
+const orden = {}; // registro de dirección de cada columna
 
 headers.forEach((th, i)=>{
   th.addEventListener("click", ()=>{
@@ -210,12 +232,13 @@ headers.forEach((th, i)=>{
       6:"pj",7:"tit",8:"sup",9:"noc",10:"g",11:"a",12:"mg",13:"ama",14:"roj"
     };
     const key = keyMap[i];
-    if(!key) return;
+    if(!orden[key]) orden[key] = "asc";
+    else orden[key] = orden[key]==="asc"?"desc":"asc";
 
     const data = [...document.querySelectorAll("#tbodyPlantilla tr")].map(tr=>{
       const tds = tr.children;
       return {
-        n: parseInt(tds[0].textContent),
+        n:parseInt(tds[0].textContent),
         foto: tds[1].querySelector("img").src,
         nombre: tds[2].textContent,
         pos: tds[3].textContent,
@@ -233,20 +256,14 @@ headers.forEach((th, i)=>{
       };
     });
 
-    // Alternar dirección si es la misma columna
-    if(ordenActual.columna === i){
-      ordenActual.ascendente = !ordenActual.ascendente;
-    } else {
-      ordenActual.columna = i;
-      ordenActual.ascendente = true;
-    }
-
     data.sort((a,b)=>{
       if(key==="pos"){
-        return (posicionesOrden.indexOf(a.pos) - posicionesOrden.indexOf(b.pos)) * (ordenActual.ascendente?1:-1);
+        return orden[key]==="asc" 
+          ? posicionesOrden.indexOf(a.pos)-posicionesOrden.indexOf(b.pos)
+          : posicionesOrden.indexOf(b.pos)-posicionesOrden.indexOf(a.pos);
       }
-      if(typeof a[key]==="number") return (a[key]-b[key])*(ordenActual.ascendente?1:-1);
-      return a[key].localeCompare(b[key])*(ordenActual.ascendente?1:-1);
+      if(typeof a[key]==="number") return orden[key]==="asc" ? a[key]-b[key] : b[key]-a[key];
+      return orden[key]==="asc" ? a[key].localeCompare(b[key]) : b[key].localeCompare(a[key]);
     });
 
     renderTabla(data);
@@ -259,7 +276,10 @@ const rankingA = document.getElementById("rankingAsist");
 const medallas = ["🥇","🥈","🥉"];
 
 rankingG.innerHTML = [...jugadores]
-  .sort((a,b)=> b.g!==a.g ? b.g-a.g : a.pj-b.pj)
+  .sort((a,b)=>{
+    if(b.g!==a.g) return b.g-a.g;
+    return a.pj-b.pj;
+  })
   .map((j,i)=>`
     <tr>
       <td>${medallas[i] || i+1}</td>
@@ -269,7 +289,10 @@ rankingG.innerHTML = [...jugadores]
   `).join("");
 
 rankingA.innerHTML = [...jugadores]
-  .sort((a,b)=> b.a!==a.a ? b.a-a.a : a.pj-b.pj)
+  .sort((a,b)=>{
+    if(b.a!==a.a) return b.a-a.a;
+    return a.pj-b.pj;
+  })
   .map((j,i)=>`
     <tr>
       <td>${medallas[i] || i+1}</td>
@@ -279,6 +302,5 @@ rankingA.innerHTML = [...jugadores]
   `).join("");
 
 </script>
-
 </body>
 </html>

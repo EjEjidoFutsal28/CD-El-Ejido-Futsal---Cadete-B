@@ -600,7 +600,7 @@ img:hover{
   /* Columna del nombre del equipo centrada y ajustada */
   .clasificacion th:nth-child(2),
   .clasificacion td:nth-child(2){
-    text-align:left;
+    text-align: center;
     white-space:nowrap;
   }
 
