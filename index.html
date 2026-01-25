@@ -1,10 +1,25 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>C.D. El Ejido Futsal · Plantilla</title>
-  <link rel="stylesheet" href="estilos.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>C.D. El Ejido Futsal · Plantilla</title>
+<link rel="stylesheet" href="estilos.css">
+<style>
+  th {
+    cursor: pointer;
+  }
+  th:hover {
+    text-decoration: underline;
+  }
+  /* Fotos verticales (más altas que anchas) */
+  .foto-jugador {
+    width: 40px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 14px;
+  }
+</style>
 </head>
 <body>
 
@@ -24,6 +39,7 @@
   </div>
 </div>
 
+<!-- ================= IMAGEN EQUIPO ================= -->
 <div class="card fade equipo-card">
   <img id="Equipo" src="equipo.png" alt="CD El Ejido Futsal">
   <div class="equipo-info">
@@ -31,23 +47,24 @@
   </div>
 </div>
 
+<!-- ================= TABLA PLANTILLA ================= -->
 <div class="card fade">
   <h2>👥 Jugadores del equipo</h2>
-
   <table id="plantilla">
     <thead>
       <tr>
         <th>Nº</th>
-        <th>Jugador</th>
-        <th>Posición</th>
-        <th>Edad</th>
-        <th>Fecha Nac.</th>
+        <th>FOTO</th>
+        <th>JUG</th>
+        <th>POS</th>
+        <th>EDAD</th>
+        <th>FECHA NAC.</th>
         <th>PJ</th>
         <th>TIT</th>
         <th>SUP</th>
         <th>NOC</th>
-        <th>G</th>
-        <th>A</th>
+        <th>GOLES</th>
+        <th>ASIST.</th>
         <th>MG</th>
         <th>AMA</th>
         <th>ROJ</th>
@@ -108,23 +125,20 @@
 <script>
 /* ================= FUNCIÓN CALCULAR EDAD ================= */
 function calcularEdad(fecha) {
-  if (fecha === "-") return "-";
-
-  const [d, m, y] = fecha.split("/");
-  const nacimiento = new Date(y, m - 1, d);
+  if (fecha === "-" || fecha === "00/00/2013" || fecha === "00/00/2011") return "-";
+  const [d,m,y] = fecha.split("/");
+  const nacimiento = new Date(y,m-1,d);
   const hoy = new Date();
-
   let edad = hoy.getFullYear() - nacimiento.getFullYear();
-
-  const cumpleEsteAño = new Date(
-    hoy.getFullYear(),
-    nacimiento.getMonth(),
-    nacimiento.getDate()
-  );
-
+  const cumpleEsteAño = new Date(hoy.getFullYear(), nacimiento.getMonth(), nacimiento.getDate());
   if (hoy < cumpleEsteAño) edad--;
-
   return edad;
+}
+
+/* ================= NOMBRE A FOTO ================= */
+function nombreArchivo(nombre){
+  let n = nombre.normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/\s+/g,"");
+  return "Fotos_equipo/" + n + ".jpg";
 }
 
 /* ================= DATOS JUGADORES ================= */
@@ -136,7 +150,7 @@ const jugadores = [
   {n:11,nombre:"Javier",pos:"Ala",fn:"13/12/2011",pj:11,tit:7,sup:4,noc:0,g:2,a:3,ama:0,roj:0},
   {n:14,nombre:"Juan",pos:"Ala Pívot",fn:"12/11/2011",pj:11,tit:11,sup:0,noc:0,g:9,a:4,ama:1,roj:0},
   {n:16,nombre:"Alejandro",pos:"Ala",fn:"04/08/2011",pj:11,tit:4,sup:7,noc:0,g:4,a:4,ama:1,roj:0},
-  {n:17,nombre:"Pedro",pos:"Ala Cierre",fn:"00/00/2013",pj:2,tit:0,sup:2,noc:0,g:1,a:0,ama:0,roj:0},
+  {n:77,nombre:"Pedro",pos:"Ala Cierre",fn:"00/00/2013",pj:2,tit:0,sup:2,noc:0,g:1,a:0,ama:0,roj:0},
   {n:21,nombre:"Daniel",pos:"Ala",fn:"28/12/2011",pj:8,tit:1,sup:7,noc:3,g:1,a:0,ama:0,roj:0},
   {n:22,nombre:"Pablo",pos:"Cierre",fn:"20/01/2011",pj:11,tit:11,sup:0,noc:0,g:3,a:0,ama:4,roj:0},
   {n:24,nombre:"Iker",pos:"Universal",fn:"30/09/2011",pj:11,tit:10,sup:1,noc:0,g:5,a:1,ama:2,roj:0},
@@ -144,41 +158,108 @@ const jugadores = [
   {n:30,nombre:"Domingo",pos:"Pívot",fn:"00/00/2011",pj:7,tit:0,sup:7,noc:4,g:1,a:1,ama:1,roj:0}
 ];
 
-/* ================= PLANTILLA ================= */
+// Agregar foto
+jugadores.forEach(j=>j.foto = nombreArchivo(j.nombre));
+
+/* ================= ORDEN INICIAL POR POSICIÓN ================= */
+const posicionesOrden = ["Portero","Cierre","Ala Cierre","Ala","Ala Pívot","Pívot","Universal"];
 const tbody = document.getElementById("tbodyPlantilla");
 
-tbody.innerHTML = jugadores.map(j => {
-  const mg = j.pj ? (j.g / j.pj).toFixed(2) : "0.00";
+function renderTabla(data){
+  tbody.innerHTML = data.map(j=>{
+    const mg = j.pj ? (j.g/j.pj).toFixed(2) : "0.00";
+    return `
+      <tr>
+        <td>${j.n}</td>
+        <td><img src="${j.foto}" alt="${j.nombre}" class="foto-jugador"></td>
+        <td>${j.nombre}</td>
+        <td>${j.pos}</td>
+        <td>${calcularEdad(j.fn)}</td>
+        <td>${j.fn}</td>
+        <td>${j.pj}</td>
+        <td>${j.tit}</td>
+        <td>${j.sup}</td>
+        <td>${j.noc}</td>
+        <td>${j.g}</td>
+        <td>${j.a}</td>
+        <td>${mg}</td>
+        <td>${j.ama}</td>
+        <td>${j.roj}</td>
+      </tr>
+    `;
+  }).join("");
+}
 
-  return `
-    <tr class="fade">
-      <td>${j.n}</td>
-      <td>${j.nombre}</td>
-      <td>${j.pos}</td>
-      <td>${calcularEdad(j.fn)}</td>
-      <td>${j.fn}</td>
-      <td>${j.pj}</td>
-      <td>${j.tit}</td>
-      <td>${j.sup}</td>
-      <td>${j.noc}</td>
-      <td>${j.g}</td>
-      <td>${j.a}</td>
-      <td>${mg}</td>
-      <td>${j.ama}</td>
-      <td>${j.roj}</td>
-    </tr>
-  `;
-}).join("");
+// Orden inicial por posición y dorsal
+const dataInicial = [...jugadores].sort((a,b)=>{
+  const posA = posicionesOrden.indexOf(a.pos);
+  const posB = posicionesOrden.indexOf(b.pos);
+  if(posA!==posB) return posA-posB;
+  return a.n-b.n;
+});
+renderTabla(dataInicial);
+
+/* ================= ORDEN CLICK EN HEADERS CON ASC/DESC ================= */
+const headers = document.querySelectorAll("#plantilla th");
+let ordenActual = { columna: null, ascendente: true };
+
+headers.forEach((th, i)=>{
+  th.addEventListener("click", ()=>{
+    const keyMap = {
+      0:"n", 2:"nombre", 3:"pos", 4:"edad", 5:"fn",
+      6:"pj",7:"tit",8:"sup",9:"noc",10:"g",11:"a",12:"mg",13:"ama",14:"roj"
+    };
+    const key = keyMap[i];
+    if(!key) return;
+
+    const data = [...document.querySelectorAll("#tbodyPlantilla tr")].map(tr=>{
+      const tds = tr.children;
+      return {
+        n: parseInt(tds[0].textContent),
+        foto: tds[1].querySelector("img").src,
+        nombre: tds[2].textContent,
+        pos: tds[3].textContent,
+        edad: tds[4].textContent,
+        fn: tds[5].textContent,
+        pj: parseInt(tds[6].textContent),
+        tit: parseInt(tds[7].textContent),
+        sup: parseInt(tds[8].textContent),
+        noc: parseInt(tds[9].textContent),
+        g: parseInt(tds[10].textContent),
+        a: parseInt(tds[11].textContent),
+        mg: parseFloat(tds[12].textContent),
+        ama: parseInt(tds[13].textContent),
+        roj: parseInt(tds[14].textContent)
+      };
+    });
+
+    // Alternar dirección si es la misma columna
+    if(ordenActual.columna === i){
+      ordenActual.ascendente = !ordenActual.ascendente;
+    } else {
+      ordenActual.columna = i;
+      ordenActual.ascendente = true;
+    }
+
+    data.sort((a,b)=>{
+      if(key==="pos"){
+        return (posicionesOrden.indexOf(a.pos) - posicionesOrden.indexOf(b.pos)) * (ordenActual.ascendente?1:-1);
+      }
+      if(typeof a[key]==="number") return (a[key]-b[key])*(ordenActual.ascendente?1:-1);
+      return a[key].localeCompare(b[key])*(ordenActual.ascendente?1:-1);
+    });
+
+    renderTabla(data);
+  });
+});
 
 /* ================= RANKINGS ================= */
 const rankingG = document.getElementById("rankingGoles");
 const rankingA = document.getElementById("rankingAsist");
 const medallas = ["🥇","🥈","🥉"];
 
-// GOLES
-rankingG.innerHTML = jugadores
-  .slice()
-  .sort((a,b)=>b.g-a.g)
+rankingG.innerHTML = [...jugadores]
+  .sort((a,b)=> b.g!==a.g ? b.g-a.g : a.pj-b.pj)
   .map((j,i)=>`
     <tr>
       <td>${medallas[i] || i+1}</td>
@@ -187,10 +268,8 @@ rankingG.innerHTML = jugadores
     </tr>
   `).join("");
 
-// ASISTENCIAS
-rankingA.innerHTML = jugadores
-  .slice()
-  .sort((a,b)=>b.a-a.a)
+rankingA.innerHTML = [...jugadores]
+  .sort((a,b)=> b.a!==a.a ? b.a-a.a : a.pj-b.pj)
   .map((j,i)=>`
     <tr>
       <td>${medallas[i] || i+1}</td>
@@ -198,6 +277,7 @@ rankingA.innerHTML = jugadores
       <td>${j.a}</td>
     </tr>
   `).join("");
+
 </script>
 
 </body>

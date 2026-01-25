@@ -151,32 +151,69 @@ tbody tr:hover{
   z-index:3;
 }
 
+/* Dorsal */
 #plantilla td:first-child{
   font-weight:900;
   background:#eef5ff;
   border-radius:10px;
 }
 
+/* Foto del jugador */
 #plantilla td:nth-child(2){
+  /* Mantener foto centrada y con forma ovalada vertical */
+  text-align:center;
+}
+
+#plantilla td:nth-child(2) img{
+  width:40px;       /* más alto que ancho */
+  height:60px;
+  object-fit:cover;
+  border-radius:20%; /* ovalada vertical */
+  box-shadow:0 4px 12px rgba(0,0,0,.2);
+}
+
+/* Nombre del jugador */
+#plantilla td:nth-child(3){
   font-weight:700;
   color:var(--azul);
 }
 
-#plantilla td:nth-child(10),
+/* Stats: Goles, Asistencias, MG, Amarillas, Rojas */
 #plantilla td:nth-child(11),
-#plantilla td:nth-child(12){
+#plantilla td:nth-child(12),
+#plantilla td:nth-child(13){
   font-weight:900;
   color:var(--azul);
 }
 
-#plantilla td:nth-child(13){
-  color:#f9a825;
+#plantilla td:nth-child(14){
+  color:#f9a825; /* Amarillas */
   font-weight:800;
 }
 
-#plantilla td:nth-child(14){
-  color:#c62828;
+#plantilla td:nth-child(15){
+  color:#c62828; /* Rojas */
   font-weight:900;
+}
+
+/* Encabezado sticky sigue igual */
+#plantilla thead th{
+  background:linear-gradient(135deg,var(--azul),var(--azul2));
+  color:white;
+  padding:12px 6px;
+  font-size:14px;
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:.6px;
+}
+
+/* Alternar filas */
+tbody tr:nth-child(even){
+  background:#fafcff;
+}
+
+tbody tr:hover{
+  background:#e8f1ff;
 }
 
 /* ================= CLASIFICACIÓN ================= */
