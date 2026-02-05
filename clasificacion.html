@@ -124,7 +124,7 @@ const jornadas = {
   11:[["ADR","SLU",5,5],["SPO","POLI",6,6],["DAL","EJI",6,3],"VIC"],
   12:[["SLU","VIC",3,7],["POLI","ADR",1,2],["EJI","SPO",5,1],"DAL"],
   13:[["VIC","POLI",7,1],["ADR","EJI",4,2],["SPO","DAL",2,3],"SLU"],
-  14:[["POLI","SLU","08/02"],["EJI","VIC","08/02"],["DAL","ADR","08/02"],"SPO"]
+  14:[["POLI","SLU","Suspendido"],["EJI","VIC",1,1],["DAL","ADR","Suspendido"],"SPO"]
 };
 
 /* ===================== VÍDEOS ===================== */
@@ -172,6 +172,12 @@ const videosPorJornada = {
     {id:"lW_zhf8caog",titulo:"Segunda parte"},
     {id:"_c5_vDrnd_s",titulo:"Resumen"}
   ],
+  14:[
+    {id:"EVq6sMFRepk",titulo:"Primera parte"},
+    {id:"gaTvDJzz_J4",titulo:"Segunda parte"},
+    {id:"mgXJbnyYQVc",titulo:"Resumen"}
+  ],
+
 };
 
 /* ===================== ELEMENTOS ===================== */
@@ -185,7 +191,7 @@ const videos = document.getElementById("videos");
 Object.keys(jornadas).forEach(j=>{
   filtro.innerHTML += `<option value="${j}">Jornada ${j}</option>`;
 });
-filtro.value = 13;
+filtro.value = 14;
 
 const jornadaActual = document.getElementById("jornadaActual");
 const prevBtn = document.getElementById("prevJornada");
