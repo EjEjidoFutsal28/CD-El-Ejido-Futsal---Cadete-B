@@ -6,39 +6,12 @@
   <title>C.D. El Ejido Futsal · Plantilla</title>
   <link rel="stylesheet" href="estilos.css">
   <style>
-    th {
-      cursor: pointer;
-    }
-    th:hover {
-      text-decoration: underline;
-    }
-
-    /* Fotos más pequeñas (verticales) */
-    .foto-jugador {
-      width: 30px;   /* más estrecha */
-      height: 45px;  /* altura proporcional */
-      object-fit: cover;
-      border-radius: 12px; /* oval vertical */
-    }
-
-    /* Ajustar columna de foto */
-    #plantilla td:nth-child(2),
-    #plantilla th:nth-child(2){
-      width: 40px;
-      padding: 4px 2px;
-    }
-
-    #plantilla td:nth-child(1),
-    #plantilla th:nth-child(1){
-      width: 55px;
-      padding: 4px 2px;
-    }
-
-    #plantilla td:nth-child(6),
-    #plantilla th:nth-child(6){
-      width: 80px;
-      padding: 4px 2px;
-    }
+    th { cursor: pointer; }
+    th:hover { text-decoration: underline; }
+    .foto-jugador { width: 30px; height: 45px; object-fit: cover; border-radius: 12px; }
+    #plantilla td:nth-child(2), #plantilla th:nth-child(2) { width: 40px; padding: 4px 2px; }
+    #plantilla td:nth-child(1), #plantilla th:nth-child(1) { width: 55px; padding: 4px 2px; }
+    #plantilla td:nth-child(6), #plantilla th:nth-child(6) { width: 80px; padding: 4px 2px; }
   </style>
 </head>
 <body>
@@ -70,25 +43,12 @@
 <!-- ================= TABLA PLANTILLA ================= -->
 <div class="card fade">
   <h2>👥 Jugadores del equipo</h2>
-
   <table id="plantilla">
     <thead>
       <tr>
-        <th>Nº</th>
-        <th>IMG</th>
-        <th>JUG</th>
-        <th>POS</th>
-        <th>EDAD</th>
-        <th>FECHA NAC.</th>
-        <th>PJ</th>
-        <th>TIT</th>
-        <th>SUP</th>
-        <th>NOC</th>
-        <th>GOLES</th>
-        <th>ASIST.</th>
-        <th>MG</th>
-        <th>AMA</th>
-        <th>ROJ</th>
+        <th>Nº</th><th>IMG</th><th>JUG</th><th>POS</th><th>EDAD</th><th>FECHA NAC.</th>
+        <th>PJ</th><th>TIT</th><th>SUP</th><th>NOC</th><th>GOLES</th>
+        <th>ASIST.</th><th>MG</th><th>AMA</th><th>ROJ</th>
       </tr>
     </thead>
     <tbody id="tbodyPlantilla"></tbody>
@@ -103,14 +63,8 @@
     <div class="ranking-card">
       <table class="ranking">
         <thead>
-          <tr>
-            <th colspan="3">🥅 Ranking de goleadores</th>
-          </tr>
-          <tr>
-            <th>Pos</th>
-            <th>Jugador</th>
-            <th>Goles</th>
-          </tr>
+          <tr><th colspan="3">🥅 Ranking de goleadores</th></tr>
+          <tr><th>Pos</th><th>Jugador</th><th>Goles</th></tr>
         </thead>
         <tbody id="rankingGoles"></tbody>
       </table>
@@ -118,16 +72,10 @@
 
     <!-- ASISTENCIAS -->
     <div class="ranking-card">
-      <table>
+      <table class="ranking">
         <thead>
-          <tr>
-            <th colspan="3">🎯 Ranking de asistencias</th>
-          </tr>
-          <tr>
-            <th>Pos</th>
-            <th>Jugador</th>
-            <th>Asistencias</th>
-          </tr>
+          <tr><th colspan="3">🎯 Ranking de asistencias</th></tr>
+          <tr><th>Pos</th><th>Jugador</th><th>Asistencias</th></tr>
         </thead>
         <tbody id="rankingAsist"></tbody>
       </table>
@@ -145,25 +93,25 @@
 <!-- ================= SCRIPT ================= -->
 <script>
 /* ================= FUNCIÓN CALCULAR EDAD ================= */
-function calcularEdad(fecha) {
-  if (fecha === "-" || fecha === "00/00/2013" || fecha === "00/00/2011") return "-";
-  const [d,m,y] = fecha.split("/");
-  const nacimiento = new Date(y,m-1,d);
-  const hoy = new Date();
-  let edad = hoy.getFullYear() - nacimiento.getFullYear();
-  const cumpleEsteAño = new Date(hoy.getFullYear(), nacimiento.getMonth(), nacimiento.getDate());
-  if (hoy < cumpleEsteAño) edad--;
+function calcularEdad(fecha){
+  if(fecha==="-"||fecha==="00/00/2013"||fecha==="00/00/2011") return "-";
+  const [d,m,y]=fecha.split("/");
+  const nacimiento=new Date(y,m-1,d);
+  const hoy=new Date();
+  let edad=hoy.getFullYear()-nacimiento.getFullYear();
+  const cumpleEsteAño=new Date(hoy.getFullYear(),nacimiento.getMonth(),nacimiento.getDate());
+  if(hoy<cumpleEsteAño) edad--;
   return edad;
 }
 
 /* ================= NOMBRE A FOTO ================= */
 function nombreArchivo(nombre){
-  let n = nombre.normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/\s+/g,"");
+  let n=nombre.normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/\s+/g,"");
   return "Fotos_equipo/" + n + ".jpg";
 }
 
 /* ================= DATOS JUGADORES ================= */
-const jugadores = [
+const jugadores=[
   {n:15,nombre:"Juanma",pos:"Portero",fn:"11/04/2011",pj:12,tit:11,sup:1,noc:0,g:0,a:1,ama:0,roj:0},
   {n:17,nombre:"Luis",pos:"Portero",fn:"17/08/2011",pj:12,tit:1,sup:11,noc:0,g:1,a:0,ama:0,roj:0},
   {n:8,nombre:"Iván",pos:"Pívot",fn:"13/12/2011",pj:5,tit:0,sup:5,noc:3,g:0,a:0,ama:0,roj:0},
@@ -180,128 +128,91 @@ const jugadores = [
   {n:88,nombre:"Aleix",pos:"Ala",fn:"00/00/2013",pj:1,tit:0,sup:1,noc:0,g:0,a:0,ama:0,roj:0},
 ];
 
-// Agregar foto
-jugadores.forEach(j=>j.foto = nombreArchivo(j.nombre));
+jugadores.forEach(j=>j.foto=nombreArchivo(j.nombre));
 
-/* ================= ORDEN INICIAL POR POSICIÓN ================= */
-const posicionesOrden = ["Portero","Cierre","Ala Cierre","Ala","Ala Pívot","Pívot","Universal"];
-const tbody = document.getElementById("tbodyPlantilla");
+const posicionesOrden=["Portero","Cierre","Ala Cierre","Ala","Ala Pívot","Pívot","Universal"];
+const tbody=document.getElementById("tbodyPlantilla");
 
 function renderTabla(data){
-  tbody.innerHTML = data.map(j=>{
-    const mg = j.pj ? (j.g/j.pj).toFixed(2) : "0.00";
-    return `
-      <tr>
-        <td>${j.n}</td>
-        <td><img src="${j.foto}" alt="${j.nombre}" class="foto-jugador"></td>
-        <td>${j.nombre}</td>
-        <td>${j.pos}</td>
-        <td>${calcularEdad(j.fn)}</td>
-        <td>${j.fn}</td>
-        <td>${j.pj}</td>
-        <td>${j.tit}</td>
-        <td>${j.sup}</td>
-        <td>${j.noc}</td>
-        <td>${j.g}</td>
-        <td>${j.a}</td>
-        <td>${mg}</td>
-        <td>${j.ama}</td>
-        <td>${j.roj}</td>
-      </tr>
-    `;
+  tbody.innerHTML=data.map(j=>{
+    const mg=j.pj?(j.g/j.pj).toFixed(2):"0.00";
+    return `<tr>
+      <td>${j.n}</td>
+      <td><img src="${j.foto}" alt="${j.nombre}" class="foto-jugador"></td>
+      <td>${j.nombre}</td>
+      <td>${j.pos}</td>
+      <td>${calcularEdad(j.fn)}</td>
+      <td>${j.fn}</td>
+      <td>${j.pj}</td>
+      <td>${j.tit}</td>
+      <td>${j.sup}</td>
+      <td>${j.noc}</td>
+      <td>${j.g}</td>
+      <td>${j.a}</td>
+      <td>${mg}</td>
+      <td>${j.ama}</td>
+      <td>${j.roj}</td>
+    </tr>`;
   }).join("");
 }
 
-// Orden inicial por posición y dorsal
-const dataInicial = [...jugadores].sort((a,b)=>{
-  const posA = posicionesOrden.indexOf(a.pos);
-  const posB = posicionesOrden.indexOf(b.pos);
-  if(posA!==posB) return posA-posB;
-  return a.n-b.n;
+const dataInicial=[...jugadores].sort((a,b)=>{
+  const posA=posicionesOrden.indexOf(a.pos), posB=posicionesOrden.indexOf(b.pos);
+  return posA!==posB? posA-posB : a.n-b.n;
 });
 
 renderTabla(dataInicial);
 
-/* ================= ORDEN CLICK EN HEADERS (ASC/DESC) ================= */
-const headers = document.querySelectorAll("#plantilla th");
-const orden = {}; // registro de dirección de cada columna
+// Orden click en headers
+const headers=document.querySelectorAll("#plantilla th");
+const orden={};
 
-headers.forEach((th, i)=>{
-  th.addEventListener("click", ()=>{
-    const keyMap = {
-      0:"n", 2:"nombre", 3:"pos", 4:"edad", 5:"fn",
-      6:"pj",7:"tit",8:"sup",9:"noc",10:"g",11:"a",12:"mg",13:"ama",14:"roj"
-    };
-    const key = keyMap[i];
-    if(!orden[key]) orden[key] = "asc";
-    else orden[key] = orden[key]==="asc"?"desc":"asc";
-
-    const data = [...document.querySelectorAll("#tbodyPlantilla tr")].map(tr=>{
-      const tds = tr.children;
+headers.forEach((th,i)=>{
+  th.addEventListener("click",()=>{
+    const keyMap={0:"n",2:"nombre",3:"pos",4:"edad",5:"fn",6:"pj",7:"tit",8:"sup",9:"noc",10:"g",11:"a",12:"mg",13:"ama",14:"roj"};
+    const key=keyMap[i];
+    orden[key]=orden[key]==="asc"?"desc":"asc"||"asc";
+    const data=[...document.querySelectorAll("#tbodyPlantilla tr")].map(tr=>{
+      const tds=tr.children;
       return {
         n:parseInt(tds[0].textContent),
-        foto: tds[1].querySelector("img").src,
-        nombre: tds[2].textContent,
-        pos: tds[3].textContent,
-        edad: tds[4].textContent,
-        fn: tds[5].textContent,
-        pj: parseInt(tds[6].textContent),
-        tit: parseInt(tds[7].textContent),
-        sup: parseInt(tds[8].textContent),
-        noc: parseInt(tds[9].textContent),
-        g: parseInt(tds[10].textContent),
-        a: parseInt(tds[11].textContent),
-        mg: parseFloat(tds[12].textContent),
-        ama: parseInt(tds[13].textContent),
-        roj: parseInt(tds[14].textContent)
+        foto:tds[1].querySelector("img").src,
+        nombre:tds[2].textContent,
+        pos:tds[3].textContent,
+        edad:tds[4].textContent,
+        fn:tds[5].textContent,
+        pj:parseInt(tds[6].textContent),
+        tit:parseInt(tds[7].textContent),
+        sup:parseInt(tds[8].textContent),
+        noc:parseInt(tds[9].textContent),
+        g:parseInt(tds[10].textContent),
+        a:parseInt(tds[11].textContent),
+        mg:parseFloat(tds[12].textContent),
+        ama:parseInt(tds[13].textContent),
+        roj:parseInt(tds[14].textContent)
       };
     });
 
     data.sort((a,b)=>{
-      if(key==="pos"){
-        return orden[key]==="asc" 
-          ? posicionesOrden.indexOf(a.pos)-posicionesOrden.indexOf(b.pos)
-          : posicionesOrden.indexOf(b.pos)-posicionesOrden.indexOf(a.pos);
-      }
-      if(typeof a[key]==="number") return orden[key]==="asc" ? a[key]-b[key] : b[key]-a[key];
-      return orden[key]==="asc" ? a[key].localeCompare(b[key]) : b[key].localeCompare(a[key]);
+      if(key==="pos") return orden[key]==="asc"? posicionesOrden.indexOf(a.pos)-posicionesOrden.indexOf(b.pos) : posicionesOrden.indexOf(b.pos)-posicionesOrden.indexOf(a.pos);
+      if(typeof a[key]==="number") return orden[key]==="asc"? a[key]-b[key] : b[key]-a[key];
+      return orden[key]==="asc"? a[key].localeCompare(b[key]) : b[key].localeCompare(a[key]);
     });
 
     renderTabla(data);
   });
 });
 
-/* ================= RANKINGS ================= */
-const rankingG = document.getElementById("rankingGoles");
-const rankingA = document.getElementById("rankingAsist");
-const medallas = ["🥇","🥈","🥉"];
+// Rankings
+const rankingG=document.getElementById("rankingGoles");
+const rankingA=document.getElementById("rankingAsist");
+const medallas=["🥇","🥈","🥉"];
 
-rankingG.innerHTML = [...jugadores]
-  .sort((a,b)=>{
-    if(b.g!==a.g) return b.g-a.g;
-    return a.pj-b.pj;
-  })
-  .map((j,i)=>`
-    <tr>
-      <td>${medallas[i] || i+1}</td>
-      <td>${j.nombre}</td>
-      <td>${j.g}</td>
-    </tr>
-  `).join("");
+rankingG.innerHTML=[...jugadores].sort((a,b)=>b.g!==a.g? b.g-a.g : a.pj-b.pj)
+  .map((j,i)=>`<tr><td>${medallas[i]||i+1}</td><td>${j.nombre}</td><td>${j.g}</td></tr>`).join("");
 
-rankingA.innerHTML = [...jugadores]
-  .sort((a,b)=>{
-    if(b.a!==a.a) return b.a-a.a;
-    return a.pj-b.pj;
-  })
-  .map((j,i)=>`
-    <tr>
-      <td>${medallas[i] || i+1}</td>
-      <td>${j.nombre}</td>
-      <td>${j.a}</td>
-    </tr>
-  `).join("");
-
+rankingA.innerHTML=[...jugadores].sort((a,b)=>b.a!==a.a? b.a-a.a : a.pj-b.pj)
+  .map((j,i)=>`<tr><td>${medallas[i]||i+1}</td><td>${j.nombre}</td><td>${j.a}</td></tr>`).join("");
 </script>
 </body>
 </html>

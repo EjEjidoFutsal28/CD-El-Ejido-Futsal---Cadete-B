@@ -6,6 +6,7 @@
   --gris:#f6f8fc;
   --amarillo:#ffe066;
 }
+
 /* =========================================================
    IMAGEN DEL EQUIPO
    ========================================================= */
@@ -19,6 +20,34 @@
   object-fit:cover;
 }
 
+/* ================= SELECTOR LIGA ================= */
+.liga-select {
+  display: inline-block !important; /* fuerza que se muestre */
+  padding:6px 12px;
+  font-size:16px;
+  border-radius:8px;
+  border:2px solid var(--azul);
+  background:white;
+  color:var(--azul);
+  cursor:pointer;
+  margin-left:8px;
+}
+
+#selectorLiga {
+  display: inline-block !important;
+  margin:10px 0;
+  padding:6px 10px;
+  font-size:16px;
+  border-radius:8px;
+  border:2px solid var(--azul);
+  background:#fff;
+  color:var(--azul);
+}
+
+/* Mostrar select de liga siempre */
+select {
+  display:inline-block !important;
+}
 
 /* ================= RESET ================= */
 *{
@@ -63,6 +92,7 @@ nav a.activo{
   color:white;
   box-shadow:0 18px 35px rgba(0,0,0,.35);
 }
+
 .flecha:disabled {
   opacity: 0.3;
   cursor: not-allowed;
@@ -151,34 +181,29 @@ tbody tr:hover{
   z-index:3;
 }
 
-/* Dorsal */
 #plantilla td:first-child{
   font-weight:900;
   background:#eef5ff;
   border-radius:10px;
 }
 
-/* Foto del jugador */
 #plantilla td:nth-child(2){
-  /* Mantener foto centrada y con forma ovalada vertical */
   text-align:center;
 }
 
 #plantilla td:nth-child(2) img{
-  width:40px;       /* más alto que ancho */
+  width:40px;
   height:60px;
   object-fit:cover;
-  border-radius:20%; /* ovalada vertical */
+  border-radius:20%;
   box-shadow:0 4px 12px rgba(0,0,0,.2);
 }
 
-/* Nombre del jugador */
 #plantilla td:nth-child(3){
   font-weight:700;
   color:var(--azul);
 }
 
-/* Stats: Goles, Asistencias, MG, Amarillas, Rojas */
 #plantilla td:nth-child(11),
 #plantilla td:nth-child(12),
 #plantilla td:nth-child(13){
@@ -187,16 +212,15 @@ tbody tr:hover{
 }
 
 #plantilla td:nth-child(14){
-  color:#f9a825; /* Amarillas */
+  color:#f9a825;
   font-weight:800;
 }
 
 #plantilla td:nth-child(15){
-  color:#c62828; /* Rojas */
+  color:#c62828;
   font-weight:900;
 }
 
-/* Encabezado sticky sigue igual */
 #plantilla thead th{
   background:linear-gradient(135deg,var(--azul),var(--azul2));
   color:white;
@@ -207,7 +231,6 @@ tbody tr:hover{
   letter-spacing:.6px;
 }
 
-/* Alternar filas */
 tbody tr:nth-child(even){
   background:#fafcff;
 }
@@ -465,15 +488,8 @@ footer{
 .fade{
   animation:fadeIn .6s ease;
 }
-.jornada-control,
-.jornada-select,
-select{
-  display:none !important;
-}
 
-/* =================================================
-   IMÁGENES — BASE
-   ================================================= */
+/* ================= IMÁGENES BASE ================= */
 img{
   max-width:100%;
   height:auto;
@@ -485,14 +501,11 @@ img:hover{
   transform:scale(1.05);
 }
 
-/* =================================================
-   CARD EQUIPO (MISMO TAMAÑO QUE LAS DEMÁS)
-   ================================================= */
+/* ================= CARD EQUIPO ================= */
 .equipo-card{
   text-align:center;
 }
 
-/* Imagen del equipo */
 #Equipo{
   width:100%;
   border-radius:18px;
@@ -500,7 +513,6 @@ img:hover{
   box-shadow:0 12px 26px rgba(0,0,0,.25);
 }
 
-/* Texto inferior tipo ficha */
 .equipo-info{
   margin:14px auto 0;
   padding:10px 14px;
@@ -512,9 +524,34 @@ img:hover{
   letter-spacing:.3px;
 }
 
+/* ================= AJUSTES SELECTOR JORNADA ================= */
+/* Mostrar selector de jornada y flechas en escritorio */
+.jornada-control,
+.jornada-select {
+  display:flex !important;
+  justify-content:center;
+  align-items:center;
+  gap:25px;
+  margin-top:20px;
+}
+
+.flecha {
+  display:inline-flex !important;
+  align-items:center;
+  justify-content:center;
+}
+
+/* Ocultar solo en móvil */
+@media (max-width:768px) {
+  .jornada-control,
+  .jornada-select {
+    display:none !important;
+  }
+}
+
+/* ================= MEDIA QUERIES MÓVIL ================= */
 @media (max-width:768px){
 
-  /* ================= BASE ================= */
   body{
     padding:6px;
     padding-bottom:80px;
@@ -522,7 +559,6 @@ img:hover{
     background:#0b3c6d;
   }
 
-  /* ================= NAV FIJO ================= */
   nav{
     position:fixed;
     bottom:0;
@@ -545,14 +581,12 @@ img:hover{
     border-bottom:none;
   }
 
-  /* ================= IMAGEN EQUIPO ================= */
   #Equipo{
     max-width:100%;
     margin:14px auto 22px;
     border-radius:18px;
   }
 
-  /* ================= TÍTULOS ================= */
   .titulo-principal{
     font-size:22px;
     line-height:1.2;
@@ -565,7 +599,6 @@ img:hover{
     padding:10px;
   }
 
-  /* ================= CARD ================= */
   .card{
     padding:20px 14px;
     border-radius:20px;
@@ -580,41 +613,33 @@ img:hover{
     text-align:center;
   }
 
-  /* =================================================
-     CLASIFICACIÓN — TABLA AJUSTABLE
-     ================================================= */
   .clasificacion{
-    width:auto;          /* tabla se ajusta al contenido */
-    min-width:100%;      /* evita que quede demasiado estrecha */
-    table-layout:auto;   /* columnas adaptables */
+    width:auto;
+    min-width:100%;
+    table-layout:auto;
   }
 
   .clasificacion th,
   .clasificacion td{
     font-size:14px;
     padding:6px 8px;
-    white-space:nowrap;  /* evita que el contenido se rompa en varias líneas */
+    white-space:nowrap;
     text-align:center;
   }
 
-  /* Columna del nombre del equipo centrada y ajustada */
   .clasificacion th:nth-child(2),
   .clasificacion td:nth-child(2){
-    text-align: center;
+    text-align:center;
     white-space:nowrap;
   }
 
-  /* Resalta fila del equipo local */
   tr.ejido{
     background:rgb(222,240,247) !important;
     font-weight:900;
   }
 
-  /* =================================================
-     PARTIDOS — TARJETAS
-     ================================================= */
   #tabla-partidos thead{
-    display:none !important; /* Ocultar cabecera */
+    display:none !important;
   }
 
   #tabla-partidos tr{
@@ -637,7 +662,6 @@ img:hover{
     padding:4px 0;
   }
 
-  /* Equipos */
   #tabla-partidos td:nth-child(1),
   #tabla-partidos td:nth-child(3){
     font-size:17px;
@@ -645,7 +669,6 @@ img:hover{
     color:var(--azul);
   }
 
-  /* Escudos */
   #tabla-partidos img{
     width:56px;
     height:56px;
@@ -653,13 +676,12 @@ img:hover{
     object-fit:contain;
   }
 
-  /* Marcador azul más largo y centrado */
   #tabla-partidos .resultado .marcador{
     display:flex;
     align-items:center;
     justify-content:center;
     height:90px;
-    max-width:95%;       
+    max-width:95%;
     margin:16px auto;
     font-size:34px;
     font-weight:900;
@@ -668,7 +690,6 @@ img:hover{
     color:#fff;
   }
 
-  /* Suspendido */
   #tabla-partidos .resultado .suspendido{
     display:flex;
     align-items:center;
@@ -683,22 +704,18 @@ img:hover{
     color:#fff;
   }
 
-  /* =================================================
-     PLANTILLA — TABLA AJUSTABLE
-     ================================================= */
   #plantilla{
-    min-width:880px;          /* permite scroll si hay muchas columnas */
-    table-layout: fixed;       /* columnas se ajustan al contenido */
+    min-width:880px;
+    table-layout: fixed;
   }
 
   #plantilla th,
   #plantilla td{
-    white-space:nowrap;       /* evita que el texto se rompa */
+    white-space:nowrap;
     font-size:14px;
     padding:6px 8px;
   }
 
-  /* Oculta columnas menos importantes en móvil */
   #plantilla th:nth-child(4),
   #plantilla td:nth-child(4),
   #plantilla th:nth-child(5),
@@ -710,18 +727,34 @@ img:hover{
     display:none;
   }
 
-  /* =================================================
-     RANKINGS / VIDEOS
-     ================================================= */
   .rankings,
   .videos{
     grid-template-columns:1fr;
   }
 
-  /* ================= FOOTER ================= */
   footer{
     font-size:13px;
     padding:20px;
   }
+}
+/* ================= SELECTOR DE JORNADA ================= */
 
+/* Mostrar control grande (flechas y número) en escritorio */
+@media (min-width:769px) {
+  .jornada-control {
+    display: flex !important; /* fuerza que se vea en escritorio */
+  }
+  .jornada-select {
+    display: none !important; /* ocultamos el select en escritorio */
+  }
+}
+
+/* Mostrar select pequeño en móvil */
+@media (max-width:768px) {
+  .jornada-control {
+    display: none !important; /* ocultamos control grande en móvil */
+  }
+  .jornada-select {
+    display: inline-block !important; /* mostramos select en móvil */
+  }
 }
